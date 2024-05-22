@@ -1,0 +1,33 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/shared/assets/fonts/index.ts",
+      "sha1": "082038359e4a03459c1f3dce42a0808a06cd0493"
+    },
+    {
+      "path": "src/shared/assets/fonts/nokwy/nokwy-regular.otf",
+      "sha1": "09d4325743a4ff1e59a5cddc9e811183973cb266"
+    },
+    {
+      "path": "src/shared/assets/fonts/nokwy/nokwy.ts",
+      "sha1": "6060d6b298750ba516d6cec0d00032802da7dabb"
+    },
+    {
+      "path": "src/shared/assets/fonts/outfit/outfit-medium.ttf",
+      "sha1": "6b59371b6ce6716d32f92d6ed398d1b7caaee04e"
+    },
+    {
+      "path": "src/shared/assets/fonts/outfit/outfit-regular.ttf",
+      "sha1": "a1a7247441b100ffe6ce38143397e2beaada6028"
+    },
+    {
+      "path": "src/shared/assets/fonts/outfit/outfit-semibold.ttf",
+      "sha1": "4a0d25f0aa3c69c62547f090ecbede770af6a30a"
+    },
+    {
+      "path": "src/shared/assets/fonts/outfit/outfit.ts",
+      "sha1": "f17a47e55cde8bfc632f93a81438d0348f355083"
+    }
+  ]
+}

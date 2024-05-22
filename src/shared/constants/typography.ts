@@ -1,36 +1,36 @@
 import { OUTFIT_FONT, NOKWY_FONT } from "@shared/assets/fonts";
 
 export const TYPOGRAPHY = {
-  title1Regular55pt: {
+  title1Regular55: {
     fontFamily: NOKWY_FONT["400"],
     fontSize: 55,
   },
-  title2Medium32pt: {
+  title2Medium32: {
     fontFamily: OUTFIT_FONT["500"],
     fontSize: 32,
   },
-  body1Medium18pt: {
+  body1Medium18: {
     fontFamily: OUTFIT_FONT["500"],
     fontSize: 18,
   },
-  body2Medium16pt: {
+  body2Medium16: {
     fontFamily: OUTFIT_FONT["500"],
     fontSize: 16,
   },
-  body3Medium14pt: {
+  body3Medium14: {
     fontFamily: OUTFIT_FONT["500"],
     fontSize: 14,
   },
-  body4Regular18pt: {
+  body4Regular18: {
     fontFamily: OUTFIT_FONT["400"],
     fontSize: 18,
   },
-  body5Regular16pt: {
+  body5Regular16: {
     fontFamily: OUTFIT_FONT["400"],
     fontSize: 16,
     letterSpacing: 0.03,
   },
-  body6Regular16pt: {
+  body6Regular16: {
     fontFamily: OUTFIT_FONT["400"],
     fontSize: 16,
     letterSpacing: 0.03,
