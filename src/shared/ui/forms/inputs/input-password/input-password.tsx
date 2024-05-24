@@ -1,10 +1,10 @@
 import { Text, TextInput, View } from "react-native";
 import { FC, useState } from "react";
-import { useThemeObject } from "@shared/themes/theme-object.hook";
 import { InputBase, InputBaseProps } from "../input-base/input-base";
 import { createStyles } from "./input-password.style";
 import { SvgEye } from "@shared/assets/icons/components/eye";
 import { SvgEyeClosed } from "@shared/assets/icons/components/eye-closed";
+import { useThemeObject } from "@shared/themes";
 
 export const InputPassword: FC<InputBaseProps> = ({
   label,

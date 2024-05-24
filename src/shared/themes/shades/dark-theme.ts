@@ -1,4 +1,4 @@
-import { ColorTheme } from "./types";
+import { ColorTheme } from "../model/types";
 
 const DARK_COLOR_THEME: ColorTheme = {
   darkest: "#FFFFFF",

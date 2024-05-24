@@ -7,9 +7,9 @@ import {
   useMemo,
   useState,
 } from "react";
-import { DARK_THEME, DARK_THEME_ID } from "./dark-theme";
-import { LIGHT_THEME, LIGHT_THEME_ID } from "./light-theme";
 import { Theme } from "./types";
+import { LIGHT_THEME, LIGHT_THEME_ID } from "../shades/light-theme";
+import { DARK_THEME, DARK_THEME_ID } from "../shades/dark-theme";
 
 type ProvidedValue = {
   theme: Theme;

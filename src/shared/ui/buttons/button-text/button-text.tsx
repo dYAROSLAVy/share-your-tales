@@ -1,8 +1,8 @@
 import { ButtonBase, ButtonBaseProps } from "../button-base";
 import { Text, View } from "react-native";
 import { FC } from "react";
-import { useThemeObject } from "@shared/themes/theme-object.hook";
 import { createStyles } from "./button-text.styles";
+import { useThemeObject } from "@shared/themes";
 
 export const ButtonText: FC<ButtonBaseProps> = ({
   text,

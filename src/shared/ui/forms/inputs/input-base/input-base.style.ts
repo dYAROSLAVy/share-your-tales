@@ -1,8 +1,8 @@
 import { TYPOGRAPHY } from "@shared/constants/typography";
-import { Theme } from "@shared/themes/types";
+import { Theme } from "@shared/themes/model/types";
 import { StyleSheet } from "react-native";
 import { InputBaseProps } from "./input-base";
-import { useThemeObject } from "@shared/themes/theme-object.hook";
+import { useThemeObject } from "@shared/themes";
 
 type PickedInputBaseProps = Pick<InputBaseProps, "style">;
 export const getStyles = ({ style }: PickedInputBaseProps) => {

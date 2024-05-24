@@ -1,5 +1,5 @@
 import { TYPOGRAPHY } from "@shared/constants/typography";
-import { Theme } from "@shared/themes/types";
+import { Theme } from "@shared/themes/model/types";
 import { StyleSheet } from "react-native";
 
 export const createStyles = (theme: Theme) => {
