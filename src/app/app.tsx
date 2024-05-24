@@ -1,12 +1,15 @@
 import React from "react";
 import { RootStack } from "./navigation/root-stack";
-import { ThemeProvider } from "@shared/themes/theme-context";
-import { LIGHT_THEME } from "@shared/themes/light-theme";
+import { ApolloProvider } from "@apollo/client";
+import { CLIENT } from "@shared/constants/apollo-client";
+import { LIGHT_THEME, ThemeProvider } from "@shared/themes";
 
 export function App(): React.JSX.Element {
   return (
-    <ThemeProvider initial={LIGHT_THEME}>
-      <RootStack />
-    </ThemeProvider>
+    <ApolloProvider client={CLIENT}>
+      <ThemeProvider initial={LIGHT_THEME}>
+        <RootStack />
+      </ThemeProvider>
+    </ApolloProvider>
   );
 }

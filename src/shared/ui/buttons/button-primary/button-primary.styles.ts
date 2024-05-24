@@ -1,15 +1,19 @@
 import { TYPOGRAPHY } from "@shared/constants/typography";
-import { Theme } from "@shared/themes/types";
+import { Theme } from "@shared/themes/model/types";
 import { StyleSheet } from "react-native";
 import { ButtonBaseProps } from "../button-base";
-import { useThemeObject } from "@shared/themes/theme-object.hook";
+import { useThemeObject } from "@shared/themes";
 
-type PickedButtonBaseProps = Pick<ButtonBaseProps, "disabled" | "onPressIn">;
-export const getStyles = ({ disabled, onPressIn }: PickedButtonBaseProps) => {
+type PickedButtonBaseProps = Pick<ButtonBaseProps, "disabled" | "isLoading">;
+export const getStyles = ({ disabled, isLoading }: PickedButtonBaseProps) => {
   const { styles } = useThemeObject(createStyles);
 
   return {
-    rootStyles: [styles.primary, disabled && styles.rootDisabled],
+    rootStyles: [
+      styles.primary,
+      disabled && styles.rootDisabled,
+      isLoading && styles.rootLoading,
+    ],
     textStyle: [styles.textStyle, disabled && styles.textDisabled],
   };
 };
@@ -32,6 +36,9 @@ const createStyles = (theme: Theme) => {
     },
     textDisabled: {
       color: theme.color.dark,
+    },
+    rootLoading: {
+      pointerEvents: "none",
     },
   });
 
