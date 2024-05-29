@@ -9,7 +9,8 @@ export const createStyles = (theme: Theme) => {
       justifyContent: "space-between",
       paddingVertical: 16,
       paddingBottom: 8,
-      marginTop: 180,
+      paddingTop: 180,
+      backgroundColor: theme.color.lightest
     },
 
     topInner: {

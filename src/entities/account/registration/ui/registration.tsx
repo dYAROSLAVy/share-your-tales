@@ -1,4 +1,4 @@
-import { SafeAreaView, Text, View } from "react-native";
+import { Alert, SafeAreaView, Text, View } from "react-native";
 import { createStyles } from "../../styles/account.styles";
 import { ButtonPrimary, ButtonText } from "@shared/ui/buttons";
 import { InputBase } from "@shared/ui/forms/inputs/input-base/input-base";
@@ -8,17 +8,28 @@ import { useMutation } from "@apollo/client";
 import { USER_SING_UP } from "../model/graph";
 import { SignUpRequest } from "../model/types";
 import { useThemeObject } from "@shared/themes";
+import { AsyncStorageService } from "@entities/account";
 
 export const Registration = ({ navigation }) => {
   const styles = useThemeObject(createStyles);
 
   const { control, handleSubmit } = useForm();
 
-  const [userSignUp, { loading, data, error }] = useMutation(USER_SING_UP);
+  const [userSignUp, { loading }] = useMutation(USER_SING_UP);
 
-  const onSubmit = (formData: SignUpRequest) => {
-    userSignUp({ variables: formData });
-    console.log(userSignUp(data));
+  const onSubmit = async (formData: SignUpRequest) => {
+    try {
+      const response = await userSignUp({ variables: formData });
+      if (response.data.userSignUp.problem !== null) {
+        Alert.alert(response.data.userSignUp.problem.message);
+      }
+      if (response.data.userSignUp.token) {
+        AsyncStorageService.saveAccessToken(response.data.userSignUp.token);
+        navigation.navigate("Status");
+      }
+    } catch (error) {
+      Alert.alert(error.message);
+    }
   };
 
   return (

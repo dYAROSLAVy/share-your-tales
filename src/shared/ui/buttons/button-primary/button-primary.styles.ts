@@ -29,7 +29,7 @@ const createStyles = (theme: Theme) => {
     },
     textStyle: {
       ...TYPOGRAPHY.body2Medium16,
-      color: theme.color.lightest,
+      color: theme.color.primaryBtnText,
     },
     rootDisabled: {
       backgroundColor: theme.color.disabled,

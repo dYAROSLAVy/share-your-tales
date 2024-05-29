@@ -32,8 +32,7 @@ export const TYPOGRAPHY = {
   },
   body6Regular16: {
     fontFamily: OUTFIT_FONT["400"],
-    fontSize: 16,
-    letterSpacing: 0.03,
+    fontSize: 14,
   },
   headline1Semibold18: {
     fontFamily: OUTFIT_FONT["600"],

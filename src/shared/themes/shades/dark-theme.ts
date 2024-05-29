@@ -10,9 +10,11 @@ const DARK_COLOR_THEME: ColorTheme = {
   lightest: "#131313",
   primary: "#91C521",
   primaryPress: "#7AA818",
-  title: "#87b71f",
+  title: "#b8de64;",
   disabled: "#cfcfcf",
-  primaryBtn: "#87b71f",
+  primaryBtn: "#303030",
+  primaryBtnText: "#b8de64",
+  errorClr: "#C2534C",
 };
 
 export const DARK_THEME_ID = "default-dark";
