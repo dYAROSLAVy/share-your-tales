@@ -8,7 +8,7 @@ import { FC } from "react";
 import { SvgProps } from "react-native-svg";
 
 export const ButtonBase: FC<ButtonBaseProps> = (
-  { children, style, underlayColor, disabled, isLoading, onPress },
+  { children, style, underlayColor, disabled, onPress },
   ...props
 ) => {
   const { rootStyles } = getStyles({ style });
@@ -30,6 +30,5 @@ export const ButtonBase: FC<ButtonBaseProps> = (
 export type ButtonBaseProps = {
   text?: string;
   isLoading?: boolean;
-  isPressed: true;
   icon?: (props: SvgProps) => JSX.Element;
 } & TouchableHighlightProps;

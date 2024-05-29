@@ -1,4 +1,4 @@
-import { SafeAreaView, Text, TextInput, View } from "react-native";
+import { Alert, SafeAreaView, Text, View } from "react-native";
 import { createStyles } from "../../styles/account.styles";
 import { ButtonPrimary, ButtonText } from "@shared/ui/buttons";
 import { InputBase } from "@shared/ui/forms/inputs/input-base/input-base";
@@ -8,17 +8,27 @@ import { useThemeObject } from "@shared/themes";
 import { SignInRequest } from "../model/types";
 import { USER_SING_IN } from "../model/graph";
 import { useMutation } from "@apollo/client";
+import { AsyncStorageService } from "@entities/account";
 
 export const Login = ({ navigation }) => {
   const styles = useThemeObject(createStyles);
 
   const { control, handleSubmit } = useForm();
 
-  const [userSignIn, { loading, data, error }] = useMutation(USER_SING_IN);
+  const [userSignIn, { loading }] = useMutation(USER_SING_IN);
 
-  const onSubmit = (formData: SignInRequest) => {
-    userSignIn({ variables: formData });
-    console.log(data);
+  const onSubmit = async (formData: SignInRequest) => {
+    try {
+      const response = await userSignIn({ variables: formData });
+      if (response.data.userSignIn.problem !== null) {
+        Alert.alert(response.data.userSignIn.problem.message);
+      }
+      if (response.data.userSignIn.token) {
+        AsyncStorageService.saveAccessToken(response.data.userSignIn.token);
+      }
+    } catch (error) {
+      Alert.alert(error.message);
+    }
   };
 
   return (

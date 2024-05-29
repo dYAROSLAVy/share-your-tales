@@ -11,6 +11,8 @@ export type ColorTheme = {
   title: string;
   disabled: string;
   primaryBtn: string;
+  primaryBtnText: string;
+  errorClr: string;
 };
 
 export type Theme = {

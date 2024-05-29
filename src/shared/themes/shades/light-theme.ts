@@ -13,6 +13,8 @@ const LIGHT_COLOR_THEME: ColorTheme = {
   title: "#87b71f",
   disabled: "#cfcfcf",
   primaryBtn: "#87b71f",
+  primaryBtnText: "#FFFFFF",
+  errorClr: "#C2534C",
 };
 
 export const LIGHT_THEME_ID = "default-light";
