@@ -1,0 +1,31 @@
+query GetPosts {
+  posts(input: { type: NEW }) {
+    data {
+      author {
+        avatarUrl
+        birthDate
+        country
+        createdAt
+        deletedAt
+        email
+        firstName
+        gender
+        id
+        lastName
+        middleName
+        phone
+        updatedAt
+      }
+      authorId
+      createdAt
+      deletedAt
+      description
+      id
+      isLiked
+      likesCount
+      mediaUrl
+      title
+      updatedAt
+    }
+  }
+}
