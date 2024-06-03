@@ -1,31 +1,49 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { LoginScreen } from "@screens/login-screen/login-screen";
-import { RegistrationScreen } from "@screens/registration-screen/registration-screen";
-import { StatusScreen } from "@screens/status-screen/status-screen";
-import { DEFAULT_STACK_OPTIONS } from "@shared/navigation/navigation-config";
+import { AuthStack } from "./auth-stack/auth-stack";
+import { MainStack } from "./main-stack/main-stack";
+import { useEffect, useState } from "react";
+import { DEFAULT_STACK_OPTIONS } from "@shared/constants/lib/navigation-config";
+import { AsyncStorageService } from "@shared/utils";
 
 const Stack = createNativeStackNavigator();
 
 export const RootStack = () => {
+  const [isLogin, setIsLogin] = useState(false);
+
+  const getToken = async () => {
+    const token = await AsyncStorageService.getAccessToken();
+
+    if (token !== null) {
+      setIsLogin(true);
+    }
+  };
+
+  useEffect(() => {
+    getToken();
+  }, [isLogin]);
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={DEFAULT_STACK_OPTIONS}
-        />
-        <Stack.Screen
-          name="Registration"
-          component={RegistrationScreen}
-          options={DEFAULT_STACK_OPTIONS}
-        />
-        <Stack.Screen
-          name="Status"
-          component={StatusScreen}
-          options={DEFAULT_STACK_OPTIONS}
-        />
+        {!isLogin && (
+          <Stack.Group>
+            <Stack.Screen
+              name={"AuthStack"}
+              component={AuthStack}
+              options={DEFAULT_STACK_OPTIONS}
+            />
+          </Stack.Group>
+        )}
+        {isLogin && (
+          <Stack.Group>
+            <Stack.Screen
+              name={"MainStack"}
+              component={MainStack}
+              options={DEFAULT_STACK_OPTIONS}
+            />
+          </Stack.Group>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

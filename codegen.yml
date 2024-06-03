@@ -1,0 +1,44 @@
+# overwrite: true
+# schema: "https://internship-social-media.purrweb.com/graphql"
+# required:
+#   - ts-node/register
+# documents: "src/**/*.{graphql,gql}"
+# generates:
+#   src/shared/types/api-types.ts:
+#     preset: "client"
+#     plugins: [- 'typescript']
+#   ./graphql.schema.json:
+#     plugins:
+#       - typescript-operations
+#       - typescript-react-apollo
+overwrite: true
+schema: https://internship-social-media.purrweb.com/graphql
+required:
+  - ts-node/register
+documents: "src/**/*.{graphql,gql}"
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+generates:
+  src/shared/types/api-types.ts:
+    plugins:
+      - "typescript"
+  src/:
+    preset: near-operation-file
+    presetConfig:
+      folder: __generated__
+      extension: .tsx
+      baseTypesPath: shared/apollo/model/api-types.ts
+    plugins:
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      documentMode: "documentNodeImportFragments"
+      namingConvention: keep
+      nonOptionalTypename: true
+      dupeOperationSuffix: true
+      omitOperationSuffix: true
+      withHooks: true
+      withComponent: false
+      withHOC: false
+      reactApolloVersion: 3
