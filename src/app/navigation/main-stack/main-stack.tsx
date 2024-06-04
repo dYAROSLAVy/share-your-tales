@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { CongratsScreen } from "@screens/congrats-screen";
 import { FavoritesScreen } from "@screens/favorites-screen";
 import { MainScreen } from "@screens/main-screen";
+import { MyPostsScreen } from "@screens/my-posts-screen";
 import { DEFAULT_STACK_OPTIONS } from "@shared/constants";
 import { SideMenu } from "@widgets/side-menu";
 
@@ -23,7 +24,12 @@ const ProductListWithDrawer = () => {
         component={FavoritesScreen}
         options={{ headerShown: false }}
       />
-    </Drawer.Navigator> 
+      <Drawer.Screen
+        name="MyPosts"
+        component={MyPostsScreen}
+        options={{ headerShown: false }}
+      />
+    </Drawer.Navigator>
   );
 };
 

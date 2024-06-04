@@ -4,6 +4,7 @@ import { StyleSheet } from "react-native";
 export const createStyles = (theme: Theme) => {
   const styles = StyleSheet.create({
     root: {
+      position: "relative",
       flex: 1,
       gap: 20,
       paddingVertical: 16,

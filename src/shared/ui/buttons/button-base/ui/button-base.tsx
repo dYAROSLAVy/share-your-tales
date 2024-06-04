@@ -7,6 +7,12 @@ import {
 import { FC } from "react";
 import { SvgProps } from "react-native-svg";
 
+export type ButtonBaseProps = {
+  text?: string;
+  isLoading?: boolean;
+  icon?: (props: SvgProps) => JSX.Element;
+} & TouchableHighlightProps;
+
 export const ButtonBase: FC<ButtonBaseProps> = (
   { children, style, underlayColor, disabled, onPress },
   ...props
@@ -26,9 +32,3 @@ export const ButtonBase: FC<ButtonBaseProps> = (
     </TouchableHighlight>
   );
 };
-
-export type ButtonBaseProps = {
-  text?: string;
-  isLoading?: boolean;
-  icon?: (props: SvgProps) => JSX.Element;
-} & TouchableHighlightProps;
