@@ -1,4 +1,3 @@
-import { TYPOGRAPHY } from "@shared/constants";
 import { Theme } from "@shared/themes/model/types";
 import { StyleSheet } from "react-native";
 
