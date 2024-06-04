@@ -1,4 +1,4 @@
-import { Theme } from "@shared/themes/model/types";
+import { Theme } from "@shared/themes";
 import { StyleSheet } from "react-native";
 
 export const createStyles = (theme: Theme) => {

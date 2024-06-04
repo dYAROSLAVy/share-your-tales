@@ -1,8 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { LoginScreen } from "@screens/login-screen";
 import { RegistrationScreen } from "@screens/registration-screen";
-import { StatusScreen } from "@screens/congrats-screen/status-screen";
-import { DEFAULT_STACK_OPTIONS } from "@shared/constants/lib/navigation-config";
+import { DEFAULT_STACK_OPTIONS } from "@shared/constants";
 
 const Stack = createNativeStackNavigator();
 

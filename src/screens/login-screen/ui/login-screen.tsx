@@ -1,10 +1,9 @@
 import { Alert } from "react-native";
 import { useForm } from "react-hook-form";
 import { SignInRequest, useUserSignIn } from "@shared/apollo";
-import { InputBase, InputPassword } from "@shared/ui/forms/inputs";
 import { AsyncStorageService } from "@shared/utils";
 import { AuthBottom, AuthHeader, AuthLayout } from "@entities/account";
-import { FormWrapper, InputsList } from "@shared/ui/forms";
+import { FormWrapper, InputBase, InputPassword, InputsList } from "@shared/ui/forms";
 
 export const LoginScreen = ({ navigation }) => {
   const { control, handleSubmit } = useForm();
