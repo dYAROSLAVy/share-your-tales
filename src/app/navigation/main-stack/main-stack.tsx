@@ -1,8 +1,9 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { CongratsScreen } from "@screens/congrats-screen";
-import { PostsScreen } from "@screens/posts-screen";
-import { DEFAULT_STACK_OPTIONS } from "@shared/constants/lib/navigation-config";
+import { FavoritesScreen } from "@screens/favorites-screen";
+import { MainScreen } from "@screens/main-screen";
+import { DEFAULT_STACK_OPTIONS } from "@shared/constants";
 import { SideMenu } from "@widgets/side-menu";
 
 const Stack = createNativeStackNavigator();
@@ -14,10 +15,15 @@ const ProductListWithDrawer = () => {
     <Drawer.Navigator initialRouteName="Main" drawerContent={SideMenu}>
       <Drawer.Screen
         name="Main"
-        component={PostsScreen}
+        component={MainScreen}
         options={{ headerShown: false }}
       />
-    </Drawer.Navigator>
+      <Drawer.Screen
+        name="Favorites"
+        component={FavoritesScreen}
+        options={{ headerShown: false }}
+      />
+    </Drawer.Navigator> 
   );
 };
 

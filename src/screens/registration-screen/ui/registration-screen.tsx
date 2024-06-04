@@ -1,9 +1,8 @@
 import { Alert } from "react-native";
 import { useForm } from "react-hook-form";
-import { InputBase, InputPassword } from "@shared/ui/forms/inputs";
 import { AsyncStorageService } from "@shared/utils";
 import { AuthBottom, AuthHeader, AuthLayout } from "@entities/account";
-import { FormWrapper, InputsList } from "@shared/ui/forms";
+import { FormWrapper, InputBase, InputPassword, InputsList } from "@shared/ui/forms";
 import { SignUpRequest, useUserSignUp } from "@shared/apollo";
 
 export const RegistrationScreen = ({ navigation }) => {

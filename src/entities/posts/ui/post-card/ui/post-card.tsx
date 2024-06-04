@@ -4,8 +4,8 @@ import { useThemeObject } from "@shared/themes";
 import { FC } from "react";
 import { SvgHeart } from "@shared/assets/icons/components/heart";
 import { formatDate } from "@shared/utils";
-import { PostModel } from "@shared/apollo/model/api-types";
 import { ButtonIcon } from "@shared/ui/buttons";
+import { PostModel } from "@shared/apollo";
 
 export const Post: FC<PostProps> = ({
   title,

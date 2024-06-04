@@ -3,8 +3,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { AuthStack } from "./auth-stack/auth-stack";
 import { MainStack } from "./main-stack/main-stack";
 import { useEffect, useState } from "react";
-import { DEFAULT_STACK_OPTIONS } from "@shared/constants/lib/navigation-config";
 import { AsyncStorageService } from "@shared/utils";
+import { DEFAULT_STACK_OPTIONS } from "@shared/constants";
 
 const Stack = createNativeStackNavigator();
 
