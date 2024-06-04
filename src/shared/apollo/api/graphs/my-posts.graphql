@@ -1,0 +1,36 @@
+query GetMyPosts {
+  myPosts(input: {}) {
+    data {
+      author {
+        avatarUrl
+        birthDate
+        country
+        createdAt
+        deletedAt
+        email
+        firstName
+        gender
+        id
+        lastName
+        middleName
+        phone
+        updatedAt
+      }
+      authorId
+      createdAt
+      deletedAt
+      description
+      id
+      isLiked
+      likesCount
+      mediaUrl
+      title
+      updatedAt
+    }
+    pageInfo {
+      afterCursor
+      count
+      perPage
+    }
+  }
+}
