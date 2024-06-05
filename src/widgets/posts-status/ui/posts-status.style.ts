@@ -8,6 +8,7 @@ export const createStyles = (theme: Theme) => {
       alignItems: "center",
       gap: 24,
       marginTop: 152,
+      paddingHorizontal: 16,
     },
     bottomWrap: {
       flexDirection: "row",

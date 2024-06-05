@@ -6,3 +6,4 @@ export * from "./api/graphs/__generated__/get-posts";
 export * from "./api/graphs/__generated__/user-sing-up";
 export * from "./api/graphs/__generated__/favorites-posts";
 export * from "./api/graphs/__generated__/my-posts";
+export * from './api/graphs/__generated__/post-create'

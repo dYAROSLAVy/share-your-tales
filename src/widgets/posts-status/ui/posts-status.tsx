@@ -7,16 +7,17 @@ import { FC } from "react";
 
 type PostsStatusProps = {
   text: string;
+  isCheck?: boolean;
 };
 
-export const PostStatus: FC<PostsStatusProps> = ({ text }) => {
+export const PostStatus: FC<PostsStatusProps> = ({ text, isCheck }) => {
   const styles = useThemeObject(createStyles);
 
   return (
     <View style={styles.wrap}>
       <StatusTitle title="UPS" />
       <View style={styles.bottomWrap}>
-        <SvgCheckCircle />
+        {isCheck && <SvgCheckCircle />}
         <StatusText text={text}></StatusText>
       </View>
     </View>

@@ -4,3 +4,4 @@ export * from "./button-icon";
 export * from "./button-tab";
 export * from "./button-text";
 export * from "./button-plus";
+export * from "./button-upload";

@@ -17,7 +17,7 @@ export const MyPostsScreen = ({ navigation }) => {
         posts={data?.myPosts.data}
         empty={<PostStatus text="You haven't posted any posts yet" />}
       />
-      <PostsAddButton />
+      <PostsAddButton onPress={() => navigation.navigate("CreatePost")} />
     </PostsLayout>
   );
 };

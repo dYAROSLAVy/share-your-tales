@@ -16,7 +16,7 @@ export const FavoritesScreen = ({ navigation }) => {
       <PostsList
         posts={data?.favouritePosts.data}
         empty={
-          <PostStatus text="You haven't added anything to your favorites yet" />
+          <PostStatus text={"You haven't added anything \nto your favorites yet"} />
         }
       />
     </PostsLayout>

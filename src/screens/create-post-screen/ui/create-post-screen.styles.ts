@@ -1,19 +1,20 @@
+import { TYPOGRAPHY } from "@shared/constants";
 import { Theme } from "@shared/themes/model/types";
 import { StyleSheet } from "react-native";
 
 export const createStyles = (theme: Theme) => {
   const styles = StyleSheet.create({
-    bottomInner: {
-      alignItems: "center",
-      gap: 17,
-      paddingVertical: 20,
-      paddingHorizontal: 16,
+    root: {
+      flex: 1,
+      gap: 28,
+      backgroundColor: theme.color.lightest,
     },
-
-    registerWrap: {
-      flexDirection: "row",
-      flexWrap: "wrap",
-      gap: 4,
+    wrapper: {
+      paddingHorizontal: 16,
+      gap: 52,
+    },
+    inner: {
+      gap: 40,
     },
   });
   return styles;

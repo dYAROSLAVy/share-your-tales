@@ -7,6 +7,7 @@ export const createStyles = (theme: Theme) => {
     textStyles: {
       ...TYPOGRAPHY.body5Regular16,
       color: theme.color.darkest,
+      textAlign: "center",
     },
   });
   return styles;
