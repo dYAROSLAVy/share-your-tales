@@ -9,6 +9,7 @@ import { SvgProps } from "react-native-svg";
 
 export type ButtonBaseProps = {
   text?: string;
+  isMedium?: boolean;
   isLoading?: boolean;
   icon?: (props: SvgProps) => JSX.Element;
 } & TouchableHighlightProps;

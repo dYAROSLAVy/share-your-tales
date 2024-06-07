@@ -28,8 +28,8 @@ const createStyles = (theme: Theme) => {
       color: theme.color.darkest,
     },
     labelText: {
-      ...TYPOGRAPHY.headline1Semibold14,
       color: theme.color.dark,
+      ...TYPOGRAPHY.headline1Semibold14,
     },
   });
 

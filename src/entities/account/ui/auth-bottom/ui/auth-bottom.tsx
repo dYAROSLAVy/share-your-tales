@@ -7,20 +7,20 @@ import { ButtonPrimary, ButtonText } from "@shared/ui/buttons";
 import { FieldValues, UseFormHandleSubmit } from "react-hook-form";
 
 type AuthBottomProps = {
-  onSubmit: any;
+  onSubmit: (
+    e?: React.BaseSyntheticEvent<object, any, any> | undefined
+  ) => Promise<void>;
   textButton: string;
   onTextBtnPress: () => void;
   loading: boolean;
-  handleSubmit: UseFormHandleSubmit<FieldValues, undefined>;
 } & SubtitleProps;
 
 export const AuthBottom: FC<AuthBottomProps> = ({
   subtitle,
-  onSubmit,
   onTextBtnPress,
   textButton,
-  handleSubmit,
   loading,
+  onSubmit,
 }) => {
   const styles = useThemeObject(createStyles);
 
@@ -30,11 +30,7 @@ export const AuthBottom: FC<AuthBottomProps> = ({
         <Subtitle subtitle={subtitle} />
         <ButtonText text={textButton} onPress={onTextBtnPress} />
       </View>
-      <ButtonPrimary
-        text="Continue"
-        onPress={handleSubmit(onSubmit)}
-        isLoading={loading}
-      />
+      <ButtonPrimary text="Continue" onPress={onSubmit} isLoading={loading} />
     </View>
   );
 };

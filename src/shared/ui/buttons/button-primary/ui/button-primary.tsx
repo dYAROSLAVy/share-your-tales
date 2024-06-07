@@ -8,11 +8,16 @@ import { useTheme } from "@shared/themes";
 export const ButtonPrimary: FC<ButtonBaseProps> = ({
   text,
   disabled,
+  isMedium,
   isLoading,
   ...props
 }) => {
   const { theme } = useTheme();
-  const { rootStyles, textStyle } = getStyles({ disabled, isLoading });
+  const { rootStyles, textStyle } = getStyles({
+    disabled,
+    isLoading,
+    isMedium,
+  });
 
   return (
     <ButtonBase

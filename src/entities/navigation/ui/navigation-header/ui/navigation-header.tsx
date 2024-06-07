@@ -11,7 +11,7 @@ type NavigationHeaderProps = {
   isCross?: boolean;
   navigation: any;
   text?: string;
-  onPress: () => void;
+  onPress?: () => void;
 };
 
 export const NavigationHeader: FC<NavigationHeaderProps> = ({

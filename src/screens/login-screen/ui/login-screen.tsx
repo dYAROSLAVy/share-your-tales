@@ -1,33 +1,18 @@
-import { Alert } from "react-native";
-import { useForm } from "react-hook-form";
-import { SignInRequest, useUserSignIn } from "@shared/apollo";
-import { AsyncStorageService } from "@shared/utils";
 import { AuthBottom, AuthHeader, AuthLayout } from "@entities/account";
-import { FormWrapper, InputBase, InputPassword, InputsList } from "@shared/ui/forms";
+import {
+  FormWrapper,
+  InputBase,
+  InputPassword,
+  FormInner,
+} from "@shared/ui/forms";
+import { useSignInForm } from "@features/user";
 
 export const LoginScreen = ({ navigation }) => {
-  const { control, handleSubmit } = useForm();
-
-  const [userSignIn, { loading }] = useUserSignIn();
-
-  const onSubmit = async ({ email, password }: SignInRequest) => {
-    if (!email || !password) {
-      return;
-    }
-    try {
-      const response = await userSignIn({ variables: { email, password } });
-      if (response.data?.userSignIn.problem) {
-        Alert.alert(response.data.userSignIn.problem.message);
-      }
-      if (response.data?.userSignIn.token) {
-        await AsyncStorageService.saveAccessToken(
-          response.data.userSignIn.token
-        );
-      }
-    } catch (error) {
-      Alert.alert(error.message);
-    }
-  };
+  const {
+    loading,
+    onSubmit,
+    formMethods: { control },
+  } = useSignInForm();
 
   return (
     <AuthLayout>
@@ -36,24 +21,23 @@ export const LoginScreen = ({ navigation }) => {
           subtitle="You will be able to fully communicate "
           title="Log in"
         />
-        <InputsList>
+        <FormInner>
           <InputBase
             label="E-mail"
             placeholder="Enter your e-mail"
             control={control}
-            name={"email"}
+            name="email"
           />
           <InputPassword
             label="Password"
             placeholder="Enter your password"
             control={control}
-            name={"password"}
+            name="password"
           />
-        </InputsList>
+        </FormInner>
       </FormWrapper>
       <AuthBottom
         onSubmit={onSubmit}
-        handleSubmit={handleSubmit}
         subtitle="No account?"
         loading={loading}
         textButton="Register"
