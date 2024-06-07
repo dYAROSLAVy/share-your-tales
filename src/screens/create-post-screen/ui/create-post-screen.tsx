@@ -1,56 +1,28 @@
 import { ButtonPrimary } from "@shared/ui/buttons";
-import { Alert, SafeAreaView, View } from "react-native";
+import { SafeAreaView, View } from "react-native";
 import { createStyles } from "./create-post-screen.styles";
 import { useThemeObject } from "@shared/themes";
 import { NavigationHeader } from "@entities/navigation";
-import { InputBase, InputsList } from "@shared/ui/forms";
-import { useForm } from "react-hook-form";
-import { launchCamera, launchImageLibrary } from "react-native-image-picker";
+import { InputBase, FormInner } from "@shared/ui/forms";
 import { useState } from "react";
 import { PostsUploadPhoto } from "@entities/posts";
-import { usePostCreate } from "@shared/apollo";
+import { useCreatePostForm } from "@features/post";
+import { ChoicePhotoModal, useImagePicker } from "@features/user";
 
 export const CreatePostScreen = ({ navigation }) => {
   const styles = useThemeObject(createStyles);
 
-  const { control, handleSubmit } = useForm();
+  const [modalVisible, setModalVisible] = useState(false);
 
   const [imageUrl, setImageURI] = useState(null);
 
-  const onUploadClick = () => {
-    const options = {
-      title: "Select Image",
-      mediaType: "photo",
-      quality: 1,
-      storageOptions: {
-        skipBackup: true,
-        path: "images",
-      },
-    };
-    launchImageLibrary(options, (response) => {
-      if (!response.didCancel) {
-        setImageURI(response.assets[0].uri);
-      }
-    });
-  };
+  const { openGallery } = useImagePicker({ setImageURI });
 
-  const [postCreate, { loading }] = usePostCreate();
-
-  const onSubmit = async (data) => {
-    const mediaUrl = imageUrl;
-    const { description, title } = data;
-    if (!description || !title || mediaUrl === null) {
-      return;
-    }
-    console.log(description, title, imageUrl);
-    try {
-      const response = await postCreate({
-        variables: { description, mediaUrl, title },
-      });
-    } catch (error) {
-      Alert.alert(error.message);
-    }
-  };
+  const {
+    loading,
+    onSubmit,
+    formMethods: { control },
+  } = useCreatePostForm({ imageUrl });
 
   return (
     <SafeAreaView style={styles.root}>
@@ -62,8 +34,11 @@ export const CreatePostScreen = ({ navigation }) => {
       />
       <View style={styles.wrapper}>
         <View style={styles.inner}>
-          <PostsUploadPhoto onPress={onUploadClick} imageURI={imageUrl} />
-          <InputsList>
+          <PostsUploadPhoto
+            onPress={() => setModalVisible(true)}
+            imageURI={imageUrl}
+          />
+          <FormInner>
             <InputBase
               name="title"
               label="Title"
@@ -76,10 +51,15 @@ export const CreatePostScreen = ({ navigation }) => {
               placeholder="Enter your post"
               control={control}
             />
-          </InputsList>
+          </FormInner>
         </View>
-        <ButtonPrimary text="Publish" onPress={handleSubmit(onSubmit)} />
+        <ButtonPrimary text="Publish" onPress={onSubmit} isLoading={loading} />
       </View>
+      <ChoicePhotoModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        launchImageLibrary={openGallery}
+      />
     </SafeAreaView>
   );
 };

@@ -11,7 +11,7 @@ import { AsyncStorageService } from "@shared/utils";
 import { Avatar } from "@shared/ui/avatar";
 import { useUserMe } from "@shared/apollo";
 
-export const SideMenu = () => {
+export const SideMenu = ({ navigation }) => {
   const styles = useThemeObject(createStyles);
 
   const { toggleTheme } = useTheme();
@@ -27,7 +27,12 @@ export const SideMenu = () => {
       <SafeAreaView style={styles.root}>
         <View style={styles.topInner}>
           <View style={styles.userWrap}>
-            <Avatar style={styles.avatar} avatarUrl={data?.userMe.avatarUrl} />
+            <Avatar
+              style={styles.avatar}
+              avatarUrl={data?.userMe.avatarUrl}
+              width={46}
+              height={46}
+            />
             <Text style={styles.name}>{`${
               data?.userMe.firstName !== null && data?.userMe.firstName?.length
                 ? data?.userMe.firstName
@@ -39,8 +44,11 @@ export const SideMenu = () => {
             }`}</Text>
           </View>
           <View style={styles.actionsWrap}>
-            <ButtonIcon text="Profile">
-              <SvgUser />
+            <ButtonIcon
+              text="Profile"
+              onPress={() => navigation.navigate("Profile")}
+            >
+              <SvgUser width={24} height={24} />
             </ButtonIcon>
             <ButtonIcon text="Exit" onPress={exit}>
               <SvgExit />

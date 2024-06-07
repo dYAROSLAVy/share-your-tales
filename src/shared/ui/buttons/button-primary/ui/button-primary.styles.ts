@@ -4,8 +4,15 @@ import { useThemeObject } from "@shared/themes";
 import { TYPOGRAPHY } from "@shared/constants";
 import { ButtonBaseProps } from "../../button-base";
 
-type PickedButtonBaseProps = Pick<ButtonBaseProps, "disabled" | "isLoading">;
-export const getStyles = ({ disabled, isLoading }: PickedButtonBaseProps) => {
+type PickedButtonBaseProps = Pick<
+  ButtonBaseProps,
+  "disabled" | "isLoading" | "isMedium"
+>;
+export const getStyles = ({
+  disabled,
+  isLoading,
+  isMedium,
+}: PickedButtonBaseProps) => {
   const { styles } = useThemeObject(createStyles);
 
   return {
@@ -13,8 +20,13 @@ export const getStyles = ({ disabled, isLoading }: PickedButtonBaseProps) => {
       styles.primary,
       disabled && styles.rootDisabled,
       isLoading && styles.rootLoading,
+      isMedium && styles.medium,
     ],
-    textStyle: [styles.textStyle, disabled && styles.textDisabled],
+    textStyle: [
+      styles.textStyle,
+      disabled && styles.textDisabled,
+      isMedium && styles.mediumText,
+    ],
   };
 };
 
@@ -39,6 +51,14 @@ const createStyles = (theme: Theme) => {
     },
     rootLoading: {
       pointerEvents: "none",
+    },
+    medium: {
+      backgroundColor: theme.color.lightest,
+      height: 44,
+      padding: 10,
+    },
+    mediumText: {
+      color: theme.color.primaryBtn,
     },
   });
 

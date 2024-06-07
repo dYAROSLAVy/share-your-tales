@@ -11,7 +11,12 @@ export const UserHeaderAvatar = ({ navigation }) => {
 
   return (
     <ButtonBase style={styles.root} onPress={() => navigation.openDrawer()}>
-      <Avatar style={styles.avatar} avatarUrl={data?.userMe.avatarUrl} />
+      <Avatar
+        style={styles.avatar}
+        avatarUrl={data?.userMe.avatarUrl}
+        width={24}
+        height={24}
+      />
     </ButtonBase>
   );
 };

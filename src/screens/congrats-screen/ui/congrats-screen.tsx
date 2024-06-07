@@ -14,7 +14,7 @@ export const CongratsScreen = ({ navigation }) => {
         <StatusTitle title={"CONGRATS"} />
         <View style={styles.bottomWrap}>
           <SvgCheckCircle width={18} height={18} />
-          <StatusText text="You have been registered"></StatusText>
+          <StatusText text="You have been registered"/>
         </View>
       </View>
       <ButtonPrimary

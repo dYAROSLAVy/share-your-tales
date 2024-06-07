@@ -1,3 +1,4 @@
 export * from "./inputs";
-export * from "./inputs-list";
+export * from "./form-inner";
 export * from "./form-wrapper";
+export * from './form-title'

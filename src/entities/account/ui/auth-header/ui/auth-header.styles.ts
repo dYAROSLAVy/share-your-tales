@@ -6,6 +6,7 @@ export const createStyles = (theme: Theme) => {
   const styles = StyleSheet.create({
     textWrapper: {
       gap: 4,
+      paddingTop: 180,
     },
     title: {
       color: theme.color.title,

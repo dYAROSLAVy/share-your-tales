@@ -23,6 +23,7 @@ export const InputBase: FC<InputBaseProps> = ({
       <Text style={labelText}>{label}</Text>
       <TextInput
         style={input}
+        autoCapitalize={'none'}
         placeholder={placeholder}
         placeholderTextColor={"#9b9b9b"}
         value={field.value}
