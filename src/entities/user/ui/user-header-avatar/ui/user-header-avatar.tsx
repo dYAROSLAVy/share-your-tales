@@ -1,4 +1,5 @@
-import { useUserMe } from "@shared/apollo";
+
+import { useUserMe } from "@entities/user/api";
 import { createStyles } from "./user-header-avatar.styles";
 import { useThemeObject } from "@shared/themes";
 import { Avatar } from "@shared/ui/avatar";

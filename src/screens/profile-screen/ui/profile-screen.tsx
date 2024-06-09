@@ -1,11 +1,10 @@
-import { SafeAreaView, ScrollView, Text, View } from "react-native";
+import { SafeAreaView, ScrollView, View } from "react-native";
 import { createStyles } from "./profile-screen.styles";
 import { useThemeObject } from "@shared/themes";
 import { NavigationHeader } from "@entities/navigation";
-import { Avatar } from "@shared/ui/avatar";
 import { UserProfileAvatar } from "@entities/user/ui/user-profile-avatar";
 import { FormTitle, InputBase, FormInner } from "@shared/ui/forms";
-import { Form, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 export const ProfileScreen = ({ navigation }) => {
   const styles = useThemeObject(createStyles);

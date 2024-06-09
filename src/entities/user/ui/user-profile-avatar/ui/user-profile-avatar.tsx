@@ -1,10 +1,12 @@
-import { useUserMe } from "@shared/apollo";
 import { createStyles } from "./user-profile-avatar.styles";
 import { useTheme, useThemeObject } from "@shared/themes";
 import { Avatar } from "@shared/ui/avatar";
 import { ButtonBase } from "@shared/ui/buttons";
 import { View } from "react-native";
 import { SvgCamera } from "@shared/assets/icons/components/camera";
+import { useUserMe } from "@entities/user";
+
+
 
 export const UserProfileAvatar = () => {
   const styles = useThemeObject(createStyles);

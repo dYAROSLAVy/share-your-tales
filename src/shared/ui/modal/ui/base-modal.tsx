@@ -9,17 +9,12 @@ export type BaseModalProps = {
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 } & PropsWithChildren;
 
-export const BaseModal: FC<BaseModalProps> = ({
-  children,
-  modalVisible,
-}) => {
+export const BaseModal: FC<BaseModalProps> = ({ children, modalVisible }) => {
   const styles = useThemeObject(createStyles);
   return (
     <Modal animationType="fade" transparent={true} visible={modalVisible}>
       <SafeAreaView style={styles.root}>
-        <View style={styles.inner}>
-          {children}
-        </View>
+        <View style={styles.inner}>{children}</View>
       </SafeAreaView>
     </Modal>
   );

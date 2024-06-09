@@ -1,1 +1,1 @@
-export * from "./form/create-post"
+export * from "./api/form/create-post";

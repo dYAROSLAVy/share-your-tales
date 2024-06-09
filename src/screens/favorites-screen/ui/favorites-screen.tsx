@@ -1,7 +1,6 @@
 import { View } from "react-native";
 import { Header } from "@widgets/posts-header";
-import { useGetFavoritesPosts } from "@shared/apollo";
-import { PostsLayout } from "@entities/posts";
+import { PostsLayout, useGetFavoritesPosts } from "@entities/posts";
 import { PostStatus } from "@widgets/posts-status";
 import { PostsList } from "@widgets/posts-list";
 
@@ -16,7 +15,9 @@ export const FavoritesScreen = ({ navigation }) => {
       <PostsList
         posts={data?.favouritePosts.data}
         empty={
-          <PostStatus text={"You haven't added anything \nto your favorites yet"} />
+          <PostStatus
+            text={"You haven't added anything \nto your favorites yet"}
+          />
         }
       />
     </PostsLayout>

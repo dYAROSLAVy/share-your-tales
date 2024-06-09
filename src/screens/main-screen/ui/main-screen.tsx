@@ -1,8 +1,8 @@
 import { View } from "react-native";
 import { Header } from "@widgets/posts-header";
-import { useGetPosts, useUserMe } from "@shared/apollo";
-import { PostsLayout, SortTabs } from "@entities/posts";
+import { PostsLayout, SortTabs, useGetPosts } from "@entities/posts";
 import { PostsList } from "@widgets/posts-list";
+import { useUserMe } from "@entities/user";
 
 export const MainScreen = ({ navigation }) => {
   const { loading, error, data } = useGetPosts();

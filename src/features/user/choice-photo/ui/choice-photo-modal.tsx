@@ -20,7 +20,10 @@ export const ChoicePhotoModal: FC<ChoicePhotoModalProps> = ({
 
   const onGalleryClick = () => {
     launchImageLibrary();
-    // setModalVisible(false);
+
+    // setTimeout(() => {
+    //   setModalVisible(false);
+    // }, 3000);
   };
 
   return (
