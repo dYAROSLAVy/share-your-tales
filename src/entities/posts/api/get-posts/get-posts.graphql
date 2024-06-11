@@ -1,5 +1,5 @@
-query GetPosts {
-  posts(input: { type: NEW }) {
+query GetPosts($type: PostFilterType!) {
+  posts(input: { type: $type }) {
     data {
       author {
         avatarUrl

@@ -7,6 +7,8 @@ import { createStyles } from "./choice-photo-modal.styles";
 
 type ChoicePhotoModalProps = {
   isDeleteButton?: boolean;
+  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setImage?: React.Dispatch<React.SetStateAction<string | null |undefined>>;
   launchImageLibrary: () => void;
 } & BaseModalProps;
 
@@ -14,16 +16,13 @@ export const ChoicePhotoModal: FC<ChoicePhotoModalProps> = ({
   isDeleteButton,
   launchImageLibrary,
   setModalVisible,
+  setImage,
   ...props
 }) => {
   const styles = useThemeObject(createStyles);
 
   const onGalleryClick = () => {
     launchImageLibrary();
-
-    // setTimeout(() => {
-    //   setModalVisible(false);
-    // }, 3000);
   };
 
   return (
@@ -35,7 +34,13 @@ export const ChoicePhotoModal: FC<ChoicePhotoModalProps> = ({
           isMedium
           onPress={() => onGalleryClick()}
         />
-        {isDeleteButton && <ButtonPrimary text="Delete photo" isMedium />}
+        {isDeleteButton && (
+          <ButtonPrimary
+            text="Delete photo"
+            isMedium
+            onPress={setImage ? () => setImage(null) : undefined}
+          />
+        )}
       </View>
       <ButtonPrimary
         text="Cancel"

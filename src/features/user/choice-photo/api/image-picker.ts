@@ -1,3 +1,4 @@
+import { ImageModel } from "@shared/utils/model/types";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 
 const OPTIONS = {
@@ -11,12 +12,14 @@ const OPTIONS = {
 };
 
 type UseImagePickerProps = {
-  setImage: React.Dispatch<React.SetStateAction<null>>;
+  setImage: React.Dispatch<React.SetStateAction<ImageModel>>;
+  setImageUrl?: React.Dispatch<React.SetStateAction<string | undefined | null>>;
   onComplete?: () => void;
 };
 
 export const useImagePicker = ({
   setImage,
+  setImageUrl,
   onComplete,
 }: UseImagePickerProps) => {
   const openGallery = () => {
@@ -27,6 +30,7 @@ export const useImagePicker = ({
         console.log(response.errorMessage);
       } else {
         setImage(response?.assets?.[0]);
+        setImageUrl?.(response?.assets?.[0].uri);
         onComplete?.();
       }
     });

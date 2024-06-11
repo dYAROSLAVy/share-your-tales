@@ -3,9 +3,14 @@ import { Header } from "@widgets/posts-header";
 import { PostsLayout, SortTabs, useGetPosts } from "@entities/posts";
 import { PostsList } from "@widgets/posts-list";
 import { useUserMe } from "@entities/user";
+import { PostFilterType } from "@shared/apollo";
 
 export const MainScreen = ({ navigation }) => {
-  const { loading, error, data } = useGetPosts();
+  const type = PostFilterType.Top;
+
+  const { loading, error, data } = useGetPosts({
+    variables: { type },
+  });
 
   const { data: userData } = useUserMe();
 

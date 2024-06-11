@@ -30,6 +30,8 @@ export const SideMenu = ({ navigation }) => {
               avatarUrl={data?.userMe.avatarUrl}
               width={46}
               height={46}
+              widthImg={80}
+              heightImg={80}
             />
             <Text style={styles.name}>{`${
               data?.userMe.firstName !== null && data?.userMe.firstName?.length

@@ -12,14 +12,18 @@ type NavigationHeaderProps = {
   navigation: any;
   text?: string;
   onPress?: () => void;
+  onSubmit?: (
+    e?: React.BaseSyntheticEvent<object, any, any> | undefined
+  ) => Promise<void>;
 };
 
 export const NavigationHeader: FC<NavigationHeaderProps> = ({
   navigation,
   tile,
+  onSubmit,
   isCross,
   text,
-  onPress
+  onPress,
 }) => {
   const styles = useThemeObject(createStyles);
   return (
@@ -28,7 +32,7 @@ export const NavigationHeader: FC<NavigationHeaderProps> = ({
         <SvgBack />
       </ButtonIcon>
       <Text style={styles.textStyles}>{tile}</Text>
-      {!isCross && <ButtonText text={text} />}
+      {!isCross && <ButtonText text={text} onPress={onSubmit} />}
       {isCross && (
         <ButtonIcon onPress={onPress}>
           <SvgCross />

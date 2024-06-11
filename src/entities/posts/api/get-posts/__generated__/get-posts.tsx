@@ -3,7 +3,9 @@ import * as Types from "../../../../../shared/apollo/model/api-types";
 import { DocumentNode } from "graphql";
 import * as Apollo from "@apollo/client";
 const defaultOptions = {} as const;
-export type GetPostsVariables = Types.Exact<{ [key: string]: never }>;
+export type GetPostsVariables = Types.Exact<{
+  type: Types.PostFilterType;
+}>;
 
 export type GetPosts = {
   __typename: "Query";
@@ -48,6 +50,19 @@ export const GetPostsDocument = {
       kind: "OperationDefinition",
       operation: "query",
       name: { kind: "Name", value: "GetPosts" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "type" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "PostFilterType" },
+            },
+          },
+        },
+      ],
       selectionSet: {
         kind: "SelectionSet",
         selections: [
@@ -64,7 +79,10 @@ export const GetPostsDocument = {
                     {
                       kind: "ObjectField",
                       name: { kind: "Name", value: "type" },
-                      value: { kind: "EnumValue", value: "NEW" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "type" },
+                      },
                     },
                   ],
                 },
@@ -198,11 +216,13 @@ export const GetPostsDocument = {
  * @example
  * const { data, loading, error } = useGetPosts({
  *   variables: {
+ *      type: // value for 'type'
  *   },
  * });
  */
 export function useGetPosts(
-  baseOptions?: Apollo.QueryHookOptions<GetPosts, GetPostsVariables>
+  baseOptions: Apollo.QueryHookOptions<GetPosts, GetPostsVariables> &
+    ({ variables: GetPostsVariables; skip?: boolean } | { skip: boolean })
 ) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useQuery<GetPosts, GetPostsVariables>(

@@ -1,7 +1,7 @@
 import { ButtonIcon } from "@shared/ui/buttons";
 import { View } from "react-native";
 
-type PostDeleteAreaProps = {
+export type PostDeleteAreaProps = {
   onDeleteClick: (id: string) => Promise<void>;
   id: string;
 };

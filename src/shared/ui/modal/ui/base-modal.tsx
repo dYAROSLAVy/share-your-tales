@@ -6,7 +6,6 @@ import { createStyles } from "./base-modal.styles";
 
 export type BaseModalProps = {
   modalVisible: boolean;
-  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 } & PropsWithChildren;
 
 export const BaseModal: FC<BaseModalProps> = ({ children, modalVisible }) => {
