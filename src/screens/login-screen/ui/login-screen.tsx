@@ -6,8 +6,11 @@ import {
 } from "@shared/ui/forms";
 import { useSignInForm } from "@features/user";
 import { AuthBottom, AuthHeader, AuthLayout } from "@entities/user";
+import { SignInScreenProps } from "@shared/navigation/screen-props";
+import { FC } from "react";
+import { AppRoutes } from "@shared/navigation/app-routes";
 
-export const LoginScreen = ({ navigation }) => {
+export const LoginScreen: FC<SignInScreenProps> = ({ navigation }) => {
   const {
     loading,
     onSubmit,
@@ -41,7 +44,7 @@ export const LoginScreen = ({ navigation }) => {
         subtitle="No account?"
         loading={loading}
         textButton="Register"
-        onTextBtnPress={() => navigation.navigate("Registration")}
+        onTextBtnPress={() => navigation.navigate(AppRoutes.SignUpScreen)}
       />
     </AuthLayout>
   );

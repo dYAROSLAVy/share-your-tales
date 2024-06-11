@@ -9,11 +9,12 @@ import {
   UserProfileForm,
   useUserEditProfileForm,
 } from "@features/user";
-import { useState } from "react";
+import { FC, useState } from "react";
 import { useUserMe } from "@entities/user";
 import { ImageModel } from "@shared/utils/model/types";
+import { ProfileScreenProps } from "@shared/navigation/screen-props";
 
-export const ProfileScreen = ({ navigation }) => {
+export const ProfileScreen: FC<ProfileScreenProps> = ({ navigation }) => {
   const styles = useThemeObject(createStyles);
 
   const [modalVisible, setModalVisible] = useState(false);

@@ -3,9 +3,11 @@ import { PostsAddButton, PostsLayout, useGetMyPosts } from "@entities/posts";
 import { PostStatus } from "@widgets/posts-status";
 import { PostsList } from "@widgets/posts-list";
 import { View } from "react-native";
-import { useState } from "react";
+import { FC } from "react";
+import { MainScreenProps } from "@shared/navigation/screen-props";
+import { AppRoutes } from "@shared/navigation/app-routes";
 
-export const MyPostsScreen = ({ navigation }) => {
+export const MyPostsScreen: FC<MainScreenProps> = ({ navigation }) => {
   const { loading, error, data } = useGetMyPosts();
 
   return (
@@ -18,7 +20,9 @@ export const MyPostsScreen = ({ navigation }) => {
         posts={data?.myPosts.data}
         empty={<PostStatus text="You haven't posted any posts yet" />}
       />
-      <PostsAddButton onPress={() => navigation.navigate("CreatePost")} />
+      <PostsAddButton
+        onPress={() => navigation.navigate(AppRoutes.CreatePostScreen)}
+      />
     </PostsLayout>
   );
 };

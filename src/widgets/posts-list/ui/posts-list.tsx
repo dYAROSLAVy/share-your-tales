@@ -10,10 +10,12 @@ type PostsListProps = {
   posts?: PostModel[] | null;
   isSwipeable?: boolean;
   empty?: React.JSX.Element;
+  navigation?: any;
 };
 
 export const PostsList: FC<PostsListProps> = ({
   posts,
+  navigation,
   empty,
   isSwipeable,
 }) => {
@@ -29,6 +31,8 @@ export const PostsList: FC<PostsListProps> = ({
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
         <Post
+          id={item.id}
+          navigation={navigation}
           PostDeleteArea={() => PostDeleteArea({ id: item.id, onDeleteClick })}
           isSwipeable={isSwipeable}
           title={item.title}
@@ -36,6 +40,7 @@ export const PostsList: FC<PostsListProps> = ({
           author={item.author}
           mediaUrl={item.mediaUrl}
           createdAt={item.createdAt}
+          description={item.description}
         />
       )}
     />

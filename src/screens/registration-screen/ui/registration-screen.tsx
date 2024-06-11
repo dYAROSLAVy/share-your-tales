@@ -6,8 +6,10 @@ import {
   FormInner,
 } from "@shared/ui/forms";
 import { useSignUnForm } from "@features/user";
+import { SignInScreenProps } from "@shared/navigation/screen-props";
+import { FC } from "react";
 
-export const RegistrationScreen = ({ navigation }) => {
+export const RegistrationScreen: FC<SignInScreenProps> = ({ navigation }) => {
   const {
     loading,
     onSubmit,

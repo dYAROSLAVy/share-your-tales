@@ -2,8 +2,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { AuthStack } from "./auth-stack/auth-stack";
 import { MainStack } from "./main-stack/main-stack";
-import { DEFAULT_STACK_OPTIONS } from "@shared/constants";
+
 import { useAuthorization } from "../../entities/user/api/authorization-context/ authorization-context";
+import { DEFAULT_STACK_OPTIONS } from "@shared/navigation/navigation-config";
 
 const Stack = createNativeStackNavigator();
 

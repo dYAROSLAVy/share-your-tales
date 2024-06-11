@@ -7,7 +7,7 @@ import { createStyles } from "./navigation-header.styles";
 import { FC } from "react";
 
 type NavigationHeaderProps = {
-  tile: string;
+  tile?: string;
   isCross?: boolean;
   navigation: any;
   text?: string;

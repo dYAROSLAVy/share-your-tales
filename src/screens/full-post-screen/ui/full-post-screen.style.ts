@@ -4,12 +4,10 @@ import { StyleSheet } from "react-native";
 export const createStyles = (theme: Theme) => {
   const styles = StyleSheet.create({
     root: {
-      flexDirection: "row",
-      alignItems: "center",
+      flex: 1,
       gap: 8,
-    },
-    textStyles: {
-      color: theme.color.darkest,
+      padding: 16,
+      backgroundColor: theme.color.lightest,
     },
   });
   return styles;

@@ -4,9 +4,10 @@ import { PostsLayout, SortTabs, useGetPosts } from "@entities/posts";
 import { PostsList } from "@widgets/posts-list";
 import { useUserMe } from "@entities/user";
 import { PostFilterType } from "@shared/apollo";
-import { useState } from "react";
+import { FC, useState } from "react";
+import { MainScreenProps } from "@shared/navigation/screen-props";
 
-export const MainScreen = ({ navigation }) => {
+export const MainScreen: FC<MainScreenProps> = ({ navigation }) => {
   const TABS = [
     {
       text: "New",
@@ -54,7 +55,7 @@ export const MainScreen = ({ navigation }) => {
           createTabClickHandler={createTabClickHandler}
         />
       </View>
-      <PostsList posts={data?.posts.data} />
+      <PostsList posts={data?.posts.data} navigation={navigation} />
     </PostsLayout>
   );
 };
