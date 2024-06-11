@@ -1,2 +1,2 @@
 export * from "./ui/choice-photo-modal";
-export * from "./lib/image-picker";
+export * from "./api/image-picker";

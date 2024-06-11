@@ -2,26 +2,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { AuthStack } from "./auth-stack/auth-stack";
 import { MainStack } from "./main-stack/main-stack";
-import { useEffect, useState } from "react";
-import { AsyncStorageService } from "@shared/utils";
 import { DEFAULT_STACK_OPTIONS } from "@shared/constants";
+import { useAuthorization } from "../../entities/user/api/authorization-context/ authorization-context";
 
 const Stack = createNativeStackNavigator();
 
 export const RootStack = () => {
-  const [isLogin, setIsLogin] = useState(false);
-
-  const getToken = async () => {
-    const token = await AsyncStorageService.getAccessToken();
-
-    if (token !== null) {
-      setIsLogin(true);
-    }
-  };
-
-  useEffect(() => {
-    getToken();
-  }, [isLogin]);
+  const { isLogin } = useAuthorization();
 
   return (
     <NavigationContainer>

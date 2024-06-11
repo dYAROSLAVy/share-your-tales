@@ -1,0 +1,44 @@
+mutation UserEditProfile(
+  $email: String!
+  $country: String
+  $avatarUrl: String
+  $birthDate: String
+  $firstName: String
+  $gender: GenderType
+  $lastName: String
+  $middleName: String
+  $phone: String
+) {
+  userEditProfile(
+    input: {
+      country: $country
+      email: $email
+      avatarUrl: $avatarUrl
+      birthDate: $birthDate
+      firstName: $firstName
+      gender: $gender
+      lastName: $lastName
+      middleName: $middleName
+      phone: $phone
+    }
+  ) {
+    problem {
+      __typename
+    }
+    user {
+      avatarUrl
+      birthDate
+      country
+      createdAt
+      deletedAt
+      email
+      firstName
+      gender
+      id
+      lastName
+      middleName
+      phone
+      updatedAt
+    }
+  }
+}

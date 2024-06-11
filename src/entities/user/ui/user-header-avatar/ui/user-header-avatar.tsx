@@ -1,4 +1,4 @@
-import { useUserMe } from "@shared/apollo";
+import { useUserMe } from "@entities/user/api";
 import { createStyles } from "./user-header-avatar.styles";
 import { useThemeObject } from "@shared/themes";
 import { Avatar } from "@shared/ui/avatar";
@@ -15,6 +15,8 @@ export const UserHeaderAvatar = ({ navigation }) => {
         style={styles.avatar}
         avatarUrl={data?.userMe.avatarUrl}
         width={24}
+        heightImg={40}
+        widthImg={40}
         height={24}
       />
     </ButtonBase>
