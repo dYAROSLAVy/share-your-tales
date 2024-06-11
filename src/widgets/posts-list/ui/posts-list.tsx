@@ -3,15 +3,23 @@ import { useThemeObject } from "@shared/themes";
 import React, { FC } from "react";
 import { createStyles } from "./posts-list.style";
 import { PostModel } from "@shared/apollo";
-import { Post } from "@entities/posts";
+import { Post, PostDeleteArea } from "@entities/posts";
+import { usePostDeleteSwipe } from "@features/post";
 
 type PostsListProps = {
   posts?: PostModel[] | null;
+  isSwipeable?: boolean;
   empty?: React.JSX.Element;
 };
 
-export const PostsList: FC<PostsListProps> = ({ posts, empty }) => {
+export const PostsList: FC<PostsListProps> = ({
+  posts,
+  empty,
+  isSwipeable,
+}) => {
   const styles = useThemeObject(createStyles);
+
+  const { onDeleteClick } = usePostDeleteSwipe();
 
   return (
     <FlatList
@@ -21,6 +29,8 @@ export const PostsList: FC<PostsListProps> = ({ posts, empty }) => {
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
         <Post
+          PostDeleteArea={() => PostDeleteArea({ id: item.id, onDeleteClick })}
+          isSwipeable={isSwipeable}
           title={item.title}
           likesCount={item.likesCount}
           author={item.author}

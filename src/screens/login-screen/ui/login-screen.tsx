@@ -1,4 +1,3 @@
-import { AuthBottom, AuthHeader, AuthLayout } from "@entities/account";
 import {
   FormWrapper,
   InputBase,
@@ -6,6 +5,7 @@ import {
   FormInner,
 } from "@shared/ui/forms";
 import { useSignInForm } from "@features/user";
+import { AuthBottom, AuthHeader, AuthLayout } from "@entities/user";
 
 export const LoginScreen = ({ navigation }) => {
   const {

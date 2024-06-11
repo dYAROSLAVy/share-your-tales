@@ -1,0 +1,6 @@
+mutation PostDelete($id: String!) {
+  postDelete(input: { id: $id }) {
+    id
+    ok
+  }
+}

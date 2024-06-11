@@ -14,15 +14,18 @@ export const CreatePostScreen = ({ navigation }) => {
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  const [imageUrl, setImageURI] = useState(null);
+  const [image, setImage] = useState(null);
 
-  const { openGallery } = useImagePicker({ setImageURI });
+  const { openGallery } = useImagePicker({
+    setImage,
+    onComplete: () => setModalVisible(false),
+  });
 
   const {
     loading,
     onSubmit,
     formMethods: { control },
-  } = useCreatePostForm({ imageUrl });
+  } = useCreatePostForm(image);
 
   return (
     <SafeAreaView style={styles.root}>
@@ -30,13 +33,13 @@ export const CreatePostScreen = ({ navigation }) => {
         tile="Create post"
         navigation={navigation}
         isCross
-        onPress={() => setImageURI(null)}
+        onPress={() => setImage(null)}
       />
       <View style={styles.wrapper}>
         <View style={styles.inner}>
           <PostsUploadPhoto
             onPress={() => setModalVisible(true)}
-            imageURI={imageUrl}
+            imageURI={image !== null ? image["uri"] : ""}
           />
           <FormInner>
             <InputBase

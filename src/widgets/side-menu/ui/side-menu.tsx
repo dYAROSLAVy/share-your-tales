@@ -7,20 +7,18 @@ import { SvgUser } from "@shared/assets/icons/components/user";
 import { SvgSun } from "@shared/assets/icons/components/sun";
 import { SvgExit } from "@shared/assets/icons/components/exit";
 import { ButtonIcon } from "@shared/ui/buttons";
-import { AsyncStorageService } from "@shared/utils";
 import { Avatar } from "@shared/ui/avatar";
-import { useUserMe } from "@shared/apollo";
+
+import { useAuthorization, useUserMe } from "@entities/user";
 
 export const SideMenu = ({ navigation }) => {
   const styles = useThemeObject(createStyles);
 
   const { toggleTheme } = useTheme();
 
-  const { data } = useUserMe();
+  const { logout } = useAuthorization();
 
-  const exit = () => {
-    AsyncStorageService.clearStorage();
-  };
+  const { data } = useUserMe();
 
   return (
     <DrawerContentScrollView contentContainerStyle={{ flex: 1 }}>
@@ -32,6 +30,8 @@ export const SideMenu = ({ navigation }) => {
               avatarUrl={data?.userMe.avatarUrl}
               width={46}
               height={46}
+              widthImg={80}
+              heightImg={80}
             />
             <Text style={styles.name}>{`${
               data?.userMe.firstName !== null && data?.userMe.firstName?.length
@@ -50,7 +50,7 @@ export const SideMenu = ({ navigation }) => {
             >
               <SvgUser width={24} height={24} />
             </ButtonIcon>
-            <ButtonIcon text="Exit" onPress={exit}>
+            <ButtonIcon text="Exit" onPress={logout}>
               <SvgExit />
             </ButtonIcon>
           </View>

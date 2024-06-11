@@ -1,4 +1,4 @@
-import { AuthBottom, AuthHeader, AuthLayout } from "@entities/account";
+import { AuthBottom, AuthHeader, AuthLayout } from "@entities/user";
 import {
   FormWrapper,
   InputBase,
