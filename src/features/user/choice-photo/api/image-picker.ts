@@ -1,5 +1,9 @@
 import { ImageModel } from "@shared/utils/model/types";
-import { launchCamera, launchImageLibrary } from "react-native-image-picker";
+import {
+  ImageLibraryOptions,
+  launchCamera,
+  launchImageLibrary,
+} from "react-native-image-picker";
 
 const OPTIONS = {
   title: "Select Image",
@@ -12,7 +16,7 @@ const OPTIONS = {
 };
 
 type UseImagePickerProps = {
-  setImage: React.Dispatch<React.SetStateAction<ImageModel>>;
+  setImage: React.Dispatch<React.SetStateAction<ImageModel> | null>;
   setImageUrl?: React.Dispatch<React.SetStateAction<string | undefined | null>>;
   onComplete?: () => void;
 };
@@ -23,7 +27,7 @@ export const useImagePicker = ({
   onComplete,
 }: UseImagePickerProps) => {
   const openGallery = () => {
-    launchImageLibrary(OPTIONS, (response) => {
+    launchImageLibrary(OPTIONS as ImageLibraryOptions, (response) => {
       if (response.didCancel) {
         console.log("User cancelled image picker");
       } else if (response.errorMessage) {

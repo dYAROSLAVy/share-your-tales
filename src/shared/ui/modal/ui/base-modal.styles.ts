@@ -7,8 +7,7 @@ export const createStyles = (theme: Theme) => {
     root: {
       flex: 1,
       justifyContent: "flex-end",
-      backgroundColor: "#303030",
-      opacity: 0.8,
+      backgroundColor: "rgba(48, 48, 48, 0.8)",
     },
     inner: {
       paddingHorizontal: 16,

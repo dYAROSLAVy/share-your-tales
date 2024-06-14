@@ -18,7 +18,7 @@ const createStyles = (theme: Theme) => {
       width: 56,
       height: 56,
       borderRadius: 32,
-      backgroundColor: theme.color.primaryBtn,
+      backgroundColor: theme.color.title,
     },
   });
   return { styles };

@@ -2,12 +2,13 @@ import { SvgBack } from "@shared/assets/icons/components/back";
 import { SvgCross } from "@shared/assets/icons/components/cross";
 import { ButtonIcon, ButtonText } from "@shared/ui/buttons";
 import { Text, View } from "react-native";
-import { useThemeObject } from "@shared/themes";
-import { createStyles } from "./navigation-header.styles";
 import { FC } from "react";
+import { getStyles } from "./navigation-header.styles";
+import { useTheme } from "@shared/themes";
 
-type NavigationHeaderProps = {
-  tile: string;
+export type NavigationHeaderProps = {
+  tile?: string;
+  isFullPost?: boolean;
   isCross?: boolean;
   navigation: any;
   text?: string;
@@ -21,15 +22,17 @@ export const NavigationHeader: FC<NavigationHeaderProps> = ({
   navigation,
   tile,
   onSubmit,
+  isFullPost,
   isCross,
   text,
   onPress,
 }) => {
-  const styles = useThemeObject(createStyles);
+  const styles = getStyles({ isFullPost });
+  const { theme } = useTheme();
   return (
     <View style={styles.wrapper}>
       <ButtonIcon onPress={() => navigation.goBack()}>
-        <SvgBack />
+        <SvgBack color={theme.color.darkest} />
       </ButtonIcon>
       <Text style={styles.textStyles}>{tile}</Text>
       {!isCross && <ButtonText text={text} onPress={onSubmit} />}

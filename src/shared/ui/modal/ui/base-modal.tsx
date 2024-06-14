@@ -1,5 +1,4 @@
 import { useThemeObject } from "@shared/themes";
-import { ButtonPrimary } from "@shared/ui/buttons";
 import { FC, PropsWithChildren, useState } from "react";
 import { Modal, SafeAreaView, View } from "react-native";
 import { createStyles } from "./base-modal.styles";

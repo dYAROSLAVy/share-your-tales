@@ -9,7 +9,7 @@ export const MainDrawer = () => {
     <Drawer.Navigator
       initialRouteName="MainDrawer"
       drawerContent={SideMenu}
-      screenOptions={{ headerShown: false }}
+      screenOptions={{ headerShown: false, swipeEdgeWidth: 150 }}
     >
       <Drawer.Screen name="MainTabs" component={MainTabs} />
     </Drawer.Navigator>

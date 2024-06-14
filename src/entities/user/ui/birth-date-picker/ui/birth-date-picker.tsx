@@ -4,21 +4,21 @@ import DatePicker from "react-native-date-picker";
 import { FC, useState } from "react";
 
 type BirthDatePickerProps = {
-  datee: any;
+  initialDate: any;
   open: boolean;
-  setDatee: any;
+  setNewDate: any;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const BirthDatePicker: FC<BirthDatePickerProps> = ({
   open,
-  datee,
-  setDatee,
+  initialDate,
+  setNewDate,
   setOpen,
 }) => {
   const styles = useThemeObject(createStyles);
 
-  const [date, setDate] = useState(new Date(datee));
+  const [date, setDate] = useState(new Date(initialDate));
 
   return (
     <DatePicker
@@ -30,7 +30,7 @@ export const BirthDatePicker: FC<BirthDatePickerProps> = ({
       onConfirm={(date) => {
         setOpen(false);
         setDate(date);
-        setDatee(date.toISOString().substring(0, 10));
+        setNewDate(date.toISOString().substring(0, 10));
       }}
       open={open}
       onCancel={() => {

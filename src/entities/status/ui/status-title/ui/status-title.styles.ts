@@ -5,7 +5,7 @@ import { StyleSheet } from "react-native";
 export const createStyles = (theme: Theme) => {
   const styles = StyleSheet.create({
     titleWrap: {
-      backgroundColor: theme.color.primaryBtn,
+      backgroundColor: theme.color.title,
       paddingVertical: 12,
       paddingHorizontal: 20,
       transform: [{ rotate: "-3deg" }],

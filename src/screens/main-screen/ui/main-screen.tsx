@@ -4,9 +4,10 @@ import { PostsLayout, SortTabs, useGetPosts } from "@entities/posts";
 import { PostsList } from "@widgets/posts-list";
 import { useUserMe } from "@entities/user";
 import { PostFilterType } from "@shared/apollo";
-import { useState } from "react";
+import { FC, useState } from "react";
+import { MainScreenProps } from "@shared/navigation/screen-props";
 
-export const MainScreen = ({ navigation }) => {
+export const MainScreen: FC<MainScreenProps> = ({ navigation }) => {
   const TABS = [
     {
       text: "New",
@@ -24,8 +25,8 @@ export const MainScreen = ({ navigation }) => {
 
   const type = selectedTab as PostFilterType;
 
-  const { loading, error, data } = useGetPosts({
-    variables: { type },
+  const { loading, data, fetchMore } = useGetPosts({
+    variables: { type, limit: 10, afterCursor: null },
   });
 
   const { data: userData } = useUserMe();
@@ -34,6 +35,32 @@ export const MainScreen = ({ navigation }) => {
 
   const createTabClickHandler = (id: string) => () => {
     setSelectedTab(id);
+  };
+
+  const handleOnEndReached = () => {
+    if (data?.posts.pageInfo)
+      return fetchMore({
+        variables: {
+          afterCursor: data.posts.pageInfo.afterCursor,
+          limit: 10,
+          type,
+        },
+        updateQuery: (previousResult, { fetchMoreResult }) => {
+          const newPosts = fetchMoreResult.posts.data;
+
+          const pageInfo = fetchMoreResult.posts.pageInfo;
+          return newPosts?.length
+            ? {
+                __typename: "Query",
+                posts: {
+                  __typename: previousResult.posts.__typename,
+                  data: [...(previousResult.posts.data ?? []), ...newPosts],
+                  pageInfo,
+                },
+              }
+            : previousResult;
+        },
+      });
   };
 
   return (
@@ -54,7 +81,11 @@ export const MainScreen = ({ navigation }) => {
           createTabClickHandler={createTabClickHandler}
         />
       </View>
-      <PostsList posts={data?.posts.data} />
+      <PostsList
+        posts={data?.posts.data}
+        navigation={navigation}
+        onEndReached={handleOnEndReached}
+      />
     </PostsLayout>
   );
 };

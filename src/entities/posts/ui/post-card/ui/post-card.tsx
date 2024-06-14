@@ -1,31 +1,55 @@
-import { Image, Text, View } from "react-native";
-import { createStyles } from "./post-card.styles";
-import { useThemeObject } from "@shared/themes";
+import { Image, Text, TouchableHighlight, View } from "react-native";
+import { useTheme, useThemeObject } from "@shared/themes";
 import { FC } from "react";
 import { SvgHeart } from "@shared/assets/icons/components/heart";
 import { formatDate } from "@shared/utils";
 import { ButtonIcon } from "@shared/ui/buttons";
 import { PostModel } from "@shared/apollo";
 import { Swipeable } from "react-native-gesture-handler";
+import { SvgShare } from "@shared/assets/icons/components/share";
+import { Avatar } from "@shared/ui/avatar";
+import { getStyles } from "./post-card.styles";
 
 export type PostProps = {
   isSwipeable?: boolean;
+  isBig?: boolean;
   PostDeleteArea?: any;
+  postLike: () => void;
+  postUnlike: () => void;
+  navigation?: any;
 } & Pick<
   PostModel,
-  "title" | "createdAt" | "author" | "likesCount" | "mediaUrl"
+  | "title"
+  | "createdAt"
+  | "author"
+  | "likesCount"
+  | "mediaUrl"
+  | "id"
+  | "description"
+  | "isLiked"
 >;
 
 export const Post: FC<PostProps> = ({
   title,
   createdAt,
+  navigation,
+  isBig,
   author,
+  postLike,
+  postUnlike,
   PostDeleteArea,
+  description,
   isSwipeable,
+  id,
   likesCount,
+  isLiked,
   mediaUrl,
 }) => {
-  const styles = useThemeObject(createStyles);
+  const styles = getStyles({
+    isBig,
+  });
+
+  const { theme } = useTheme();
 
   const date = new Date(createdAt);
   const normalDate = formatDate(Number(date));
@@ -34,30 +58,60 @@ export const Post: FC<PostProps> = ({
     <Swipeable
       renderRightActions={isSwipeable ? () => PostDeleteArea() : undefined}
     >
-      <View style={styles.root}>
-        <View style={styles.topInner}>
-          <Text style={styles.titleStyles}>{title}</Text>
-          <Text style={styles.date}>{normalDate}</Text>
-        </View>
-        <Image
-          source={{ uri: mediaUrl }}
-          style={{ minWidth: 335, height: 226 }}
-          // onError={({ nativeEvent: {error} }) => console.log(error)}
-        />
-        <View style={styles.bottomInner}>
-          <View style={styles.authorWrap}>
-            <Text>
-              {author.firstName ? author.firstName : "Anonymous"}
-              {author.lastName ? ` ${author.lastName.charAt(0)}.` : ""}
-            </Text>
+      <TouchableHighlight
+        onPress={
+          navigation
+            ? () =>
+                navigation?.navigate("MainStack", {
+                  screen: "FullPost",
+                  params: { id },
+                })
+            : undefined
+        }
+      >
+        <View style={styles.root}>
+          <View style={styles.topInner}>
+            {!isBig && <Text style={styles.titleStyles}>{title}</Text>}
+            <Text style={styles.date}>{normalDate}</Text>
           </View>
-          <View>
-            <ButtonIcon text={`${likesCount}`}>
-              <SvgHeart />
-            </ButtonIcon>
+          <Image
+            source={{ uri: mediaUrl }}
+            style={styles.imageStyles}
+            // onError={({ nativeEvent: {error} }) => console.log(error)}
+          />
+          {isBig && <Text style={styles.textStyles}>{description}</Text>}
+          <View style={styles.bottomInner}>
+            <View style={styles.authorWrap}>
+              <Avatar
+                style={styles.avatarStyles}
+                widthImg={24}
+                heightImg={24}
+                avatarUrl={author.avatarUrl}
+                width={16}
+                height={22}
+              />
+              <Text style={styles.author}>
+                {author.firstName ? author.firstName : "Anonymous"}
+                {author.lastName ? ` ${author.lastName.charAt(0)}.` : ""}
+              </Text>
+            </View>
+            <View style={styles.interactionWrap}>
+              <ButtonIcon
+                onPress={isLiked ? () => postUnlike() : () => postLike()}
+                style={styles.btnLike}
+                text={`${likesCount}`}
+              >
+                <SvgHeart
+                  color={isLiked ? theme.color.primary : theme.color.darkest}
+                />
+              </ButtonIcon>
+              <ButtonIcon style={styles.btnShared}>
+                <SvgShare color={theme.color.darkest} />
+              </ButtonIcon>
+            </View>
           </View>
         </View>
-      </View>
+      </TouchableHighlight>
     </Swipeable>
   );
 };

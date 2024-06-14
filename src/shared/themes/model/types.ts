@@ -9,10 +9,12 @@ export type ColorTheme = {
   primary: string;
   primaryPress: string;
   title: string;
+  titlePressed: string;
   disabled: string;
   primaryBtn: string;
   primaryBtnText: string;
   errorClr: string;
+  menu: string;
 };
 
 export type Theme = {

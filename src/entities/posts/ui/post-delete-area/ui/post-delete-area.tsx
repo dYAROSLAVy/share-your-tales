@@ -4,16 +4,16 @@ import { View } from "react-native";
 export type PostDeleteAreaProps = {
   onDeleteClick: (id: string) => Promise<void>;
   id: string;
+  styles: any;
 };
 
-export const PostDeleteArea = ({ onDeleteClick, id }: PostDeleteAreaProps) => {
+export const PostDeleteArea = ({
+  onDeleteClick,
+  id,
+  styles,
+}: PostDeleteAreaProps) => {
   return (
-    <View
-      style={{
-        backgroundColor: "#ccffbd",
-        justifyContent: "center",
-      }}
-    >
+    <View style={styles}>
       <ButtonIcon text="Delete" onPress={() => onDeleteClick(id)} />
     </View>
   );

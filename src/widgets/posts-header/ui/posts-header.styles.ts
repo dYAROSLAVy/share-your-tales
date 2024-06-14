@@ -7,7 +7,7 @@ export const createStyles = (theme: Theme) => {
     root: {
       flexDirection: "row",
       justifyContent: "space-between",
-      paddingHorizontal: 16,
+      padding: 16,
       paddingBottom: 20,
       backgroundColor: theme.color.lightest,
     },

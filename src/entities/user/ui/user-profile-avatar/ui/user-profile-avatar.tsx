@@ -22,7 +22,11 @@ export const UserProfileAvatar: FC<UserProfileAvatarProps> = ({
   const { data } = useUserMe();
 
   return (
-    <ButtonBase style={styles.root} onPress={onPress}>
+    <ButtonBase
+      style={styles.root}
+      onPress={onPress}
+      underlayColor={"transparent"}
+    >
       <Avatar
         style={styles.avatar}
         avatarUrl={newImageURI !== null ? newImageURI : data?.userMe.avatarUrl}
@@ -33,7 +37,7 @@ export const UserProfileAvatar: FC<UserProfileAvatarProps> = ({
         color={theme.color.dark}
       />
       <View style={styles.iconWrap}>
-        <SvgCamera />
+        <SvgCamera color={theme.color.lightest} />
       </View>
     </ButtonBase>
   );

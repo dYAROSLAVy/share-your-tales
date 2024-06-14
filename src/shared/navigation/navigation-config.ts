@@ -5,5 +5,6 @@ export const DEFAULT_STACK_OPTIONS = {
   animation: "slide_from_right",
   orientation: "portrait_up",
   gestureEnabled: true,
+  fullScreenGestureEnabled: true,
   lazy: true,
 } as NativeStackNavigationOptions;
