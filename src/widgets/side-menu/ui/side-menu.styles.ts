@@ -33,6 +33,10 @@ export const createStyles = (theme: Theme) => {
       fontSize: 20,
       color: theme.color.darkest,
     },
+    contentContainerStyle: {
+      flex: 1,
+      backgroundColor: theme.color.lightest,
+    },
   });
   return styles;
 };

@@ -48,7 +48,7 @@ const createStyles = (theme: Theme) => {
       borderBottomRightRadius: 16,
     },
     active: {
-      backgroundColor: theme.color.primaryBtn,
+      backgroundColor: theme.color.title,
     },
     activeText: {
       color: theme.color.lightest,

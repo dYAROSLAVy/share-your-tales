@@ -1,4 +1,3 @@
-import { TYPOGRAPHY } from "@shared/constants";
 import { Theme } from "@shared/themes/model/types";
 import { StyleSheet } from "react-native";
 
@@ -7,6 +6,7 @@ export const createStyles = (theme: Theme) => {
     root: {
       flex: 1,
       gap: 12,
+      backgroundColor: theme.color.lightest
     },
     wrapper: {
       alignItems: "center",

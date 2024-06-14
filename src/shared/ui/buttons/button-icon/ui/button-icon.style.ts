@@ -1,8 +1,18 @@
-import { TYPOGRAPHY } from "@shared/constants/lib/typography";
+import { useThemeObject } from "@shared/themes";
 import { Theme } from "@shared/themes/model/types";
 import { StyleSheet } from "react-native";
 
-export const createStyles = (theme: Theme) => {
+export const getStyles = (isPressed: boolean) => {
+  const { styles } = useThemeObject(createStyles);
+
+  return {
+    root: styles.root,
+    textStyles: [styles.textStyles, isPressed && styles.textActive],
+    underlay: styles.underlay,
+  };
+};
+
+const createStyles = (theme: Theme) => {
   const styles = StyleSheet.create({
     root: {
       flexDirection: "row",
@@ -12,6 +22,13 @@ export const createStyles = (theme: Theme) => {
     textStyles: {
       color: theme.color.darkest,
     },
+    underlay: {
+      color: "transparent",
+    },
+    textActive: {
+      color: theme.color.titlePressed,
+    },
   });
-  return styles;
+
+  return { styles };
 };

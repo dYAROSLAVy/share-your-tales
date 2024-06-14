@@ -5,6 +5,8 @@ import * as Apollo from "@apollo/client";
 const defaultOptions = {} as const;
 export type GetPostsVariables = Types.Exact<{
   type: Types.PostFilterType;
+  afterCursor?: Types.InputMaybe<Types.Scalars["String"]["input"]>;
+  limit?: Types.InputMaybe<Types.Scalars["Int"]["input"]>;
 }>;
 
 export type GetPosts = {
@@ -40,6 +42,12 @@ export type GetPosts = {
         updatedAt: string;
       };
     }> | null;
+    pageInfo?: {
+      __typename: "PageAfterCursorInfo";
+      afterCursor?: string | null;
+      count: number;
+      perPage: number;
+    } | null;
   };
 };
 
@@ -62,6 +70,22 @@ export const GetPostsDocument = {
             },
           },
         },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "afterCursor" },
+          },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "limit" },
+          },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -82,6 +106,22 @@ export const GetPostsDocument = {
                       value: {
                         kind: "Variable",
                         name: { kind: "Name", value: "type" },
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "afterCursor" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "afterCursor" },
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "limit" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "limit" },
                       },
                     },
                   ],
@@ -195,6 +235,24 @@ export const GetPostsDocument = {
                     ],
                   },
                 },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "pageInfo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "afterCursor" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "count" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "perPage" },
+                      },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -217,6 +275,8 @@ export const GetPostsDocument = {
  * const { data, loading, error } = useGetPosts({
  *   variables: {
  *      type: // value for 'type'
+ *      afterCursor: // value for 'afterCursor'
+ *      limit: // value for 'limit'
  *   },
  * });
  */

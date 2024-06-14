@@ -12,6 +12,9 @@ export const createStyles = (theme: Theme) => {
     avatar: {
       borderRadius: 32,
     },
+    underlay: {
+      color: "transparent",
+    },
   });
   return styles;
 };

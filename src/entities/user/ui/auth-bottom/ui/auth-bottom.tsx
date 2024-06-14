@@ -4,7 +4,6 @@ import { createStyles } from "./auth-bottom.styles";
 import { useThemeObject } from "@shared/themes";
 import { Subtitle, SubtitleProps } from "@shared/ui/subtitle";
 import { ButtonPrimary, ButtonText } from "@shared/ui/buttons";
-import { FieldValues, UseFormHandleSubmit } from "react-hook-form";
 
 type AuthBottomProps = {
   onSubmit: (
@@ -13,6 +12,7 @@ type AuthBottomProps = {
   textButton: string;
   onTextBtnPress: () => void;
   loading: boolean;
+  disabled: boolean;
 } & SubtitleProps;
 
 export const AuthBottom: FC<AuthBottomProps> = ({
@@ -20,6 +20,7 @@ export const AuthBottom: FC<AuthBottomProps> = ({
   onTextBtnPress,
   textButton,
   loading,
+  disabled,
   onSubmit,
 }) => {
   const styles = useThemeObject(createStyles);
@@ -30,7 +31,12 @@ export const AuthBottom: FC<AuthBottomProps> = ({
         <Subtitle subtitle={subtitle} />
         <ButtonText text={textButton} onPress={onTextBtnPress} />
       </View>
-      <ButtonPrimary text="Continue" onPress={onSubmit} isLoading={loading} />
+      <ButtonPrimary
+        text="Continue"
+        onPress={onSubmit}
+        isLoading={loading}
+        disabled={disabled}
+      />
     </View>
   );
 };

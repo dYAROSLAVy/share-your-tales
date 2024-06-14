@@ -6,12 +6,15 @@ import { ButtonBaseProps } from "../../button-base";
 
 type PickedButtonBaseProps = Pick<
   ButtonBaseProps,
-  "disabled" | "isLoading" | "isMedium"
+  "disabled" | "isLoading" | "isMedium" | "style" | "isDelete" | "isPressed"
 >;
 export const getStyles = ({
   disabled,
   isLoading,
+  isDelete,
+  style,
   isMedium,
+  isPressed,
 }: PickedButtonBaseProps) => {
   const { styles } = useThemeObject(createStyles);
 
@@ -21,11 +24,14 @@ export const getStyles = ({
       disabled && styles.rootDisabled,
       isLoading && styles.rootLoading,
       isMedium && styles.medium,
+      style,
     ],
     textStyle: [
       styles.textStyle,
       disabled && styles.textDisabled,
       isMedium && styles.mediumText,
+      isDelete && styles.delete,
+      isPressed && styles.pressed,
     ],
   };
 };
@@ -58,7 +64,13 @@ const createStyles = (theme: Theme) => {
       padding: 10,
     },
     mediumText: {
-      color: theme.color.primaryBtn,
+      color: theme.color.title,
+    },
+    delete: {
+      color: theme.color.errorClr,
+    },
+    pressed: {
+      color: theme.color.lightest,
     },
   });
 

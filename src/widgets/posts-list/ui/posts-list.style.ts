@@ -6,6 +6,11 @@ export const createStyles = (theme: Theme) => {
     postsList: {
       gap: 4,
     },
+    deleteStyles: {
+      width: 73,
+      justifyContent: "center",
+      backgroundColor: theme.color.errorClr,
+    },
   });
   return styles;
 };

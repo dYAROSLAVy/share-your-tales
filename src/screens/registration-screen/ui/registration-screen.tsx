@@ -6,13 +6,23 @@ import {
   FormInner,
 } from "@shared/ui/forms";
 import { useSignUnForm } from "@features/user";
+import { SignInScreenProps } from "@shared/navigation/screen-props";
+import { FC } from "react";
+import { AppRoutes } from "@shared/navigation/app-routes";
 
-export const RegistrationScreen = ({ navigation }) => {
+export const RegistrationScreen: FC<SignInScreenProps> = ({ navigation }) => {
+  const onSuccess = () => {
+    navigation.navigate(AppRoutes.MainStack, {
+      screen: AppRoutes.CongratsScreen,
+    });
+  };
+
   const {
     loading,
     onSubmit,
     formMethods: { control },
-  } = useSignUnForm();
+    isValid,
+  } = useSignUnForm({ onSuccess });
 
   return (
     <AuthLayout>
@@ -48,6 +58,7 @@ export const RegistrationScreen = ({ navigation }) => {
         onTextBtnPress={() => navigation.goBack()}
         subtitle="Already have an account?"
         textButton="Log in"
+        disabled={!isValid}
       />
     </AuthLayout>
   );

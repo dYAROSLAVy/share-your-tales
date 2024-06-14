@@ -10,7 +10,11 @@ export const UserHeaderAvatar = ({ navigation }) => {
   const { data } = useUserMe();
 
   return (
-    <ButtonBase style={styles.root} onPress={() => navigation.openDrawer()}>
+    <ButtonBase
+      style={styles.root}
+      onPress={() => navigation.openDrawer()}
+      underlayColor={styles.underlay.color}
+    >
       <Avatar
         style={styles.avatar}
         avatarUrl={data?.userMe.avatarUrl}

@@ -2,6 +2,7 @@ import { Text } from "react-native";
 import { ButtonBase, ButtonBaseProps } from "@shared/ui/buttons/button-base";
 import { getStyles } from "./button-tab.style";
 import { FC } from "react";
+import { useTheme } from "@shared/themes";
 
 export const ButtonTab: FC<ButtonTabProps> = ({
   isLeft,
@@ -11,8 +12,14 @@ export const ButtonTab: FC<ButtonTabProps> = ({
   ...props
 }) => {
   const { button, buttonText } = getStyles({ isLeft, isRight, isActive });
+
+  const { theme } = useTheme();
   return (
-    <ButtonBase style={button} {...props}>
+    <ButtonBase
+      style={button}
+      underlayColor={isActive ? theme.color.primaryBtn : theme.color.lighter}
+      {...props}
+    >
       <Text style={buttonText}>{text}</Text>
     </ButtonBase>
   );

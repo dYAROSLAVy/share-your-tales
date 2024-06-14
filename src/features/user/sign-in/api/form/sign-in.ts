@@ -3,13 +3,21 @@ import { useUserSignIn } from "@entities/user/api";
 import { SignInRequest } from "@shared/apollo";
 import { useForm } from "react-hook-form";
 import { Alert } from "react-native";
+import { signInResolver } from "./sign-in-resolver";
 
 export const useSignInForm = () => {
   const [userSignIn, { loading }] = useUserSignIn();
 
   const { changeAccessToken } = useAuthorization();
 
-  const formMethods = useForm<SignInRequest>();
+  const formMethods = useForm<SignInRequest>({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+    resolver: signInResolver,
+    mode: "onTouched",
+  });
 
   const onSubmit = async ({ email, password }: SignInRequest) => {
     try {
@@ -29,5 +37,6 @@ export const useSignInForm = () => {
     formMethods,
     loading,
     onSubmit: formMethods.handleSubmit(onSubmit),
+    isValid: formMethods.formState.isValid,
   };
 };

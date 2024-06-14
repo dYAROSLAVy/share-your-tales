@@ -6,11 +6,14 @@ import {
 } from "@shared/ui/forms";
 import { useSignInForm } from "@features/user";
 import { AuthBottom, AuthHeader, AuthLayout } from "@entities/user";
-
-export const LoginScreen = ({ navigation }) => {
+import { SignInScreenProps } from "@shared/navigation/screen-props";
+import { FC } from "react";
+import { AppRoutes } from "@shared/navigation/app-routes";
+export const LoginScreen: FC<SignInScreenProps> = ({ navigation }) => {
   const {
     loading,
     onSubmit,
+    isValid,
     formMethods: { control },
   } = useSignInForm();
 
@@ -25,23 +28,24 @@ export const LoginScreen = ({ navigation }) => {
           <InputBase
             label="E-mail"
             placeholder="Enter your e-mail"
-            control={control}
             name="email"
+            control={control}
           />
           <InputPassword
             label="Password"
             placeholder="Enter your password"
-            control={control}
             name="password"
+            control={control}
           />
         </FormInner>
       </FormWrapper>
       <AuthBottom
+        disabled={!isValid}
         onSubmit={onSubmit}
         subtitle="No account?"
         loading={loading}
         textButton="Register"
-        onTextBtnPress={() => navigation.navigate("Registration")}
+        onTextBtnPress={() => navigation.navigate(AppRoutes.SignUpScreen)}
       />
     </AuthLayout>
   );

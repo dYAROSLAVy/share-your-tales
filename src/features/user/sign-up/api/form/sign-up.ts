@@ -1,13 +1,28 @@
 import { useUserSignUp } from "@entities/user/api";
 import { SignUpRequest } from "@shared/apollo";
-import { AsyncStorageService } from "@shared/utils";
 import { useForm } from "react-hook-form";
 import { Alert } from "react-native";
+import { signUpResolver } from "./sign-up-resolver";
+import { useAuthorization } from "@entities/user";
 
-export const useSignUnForm = () => {
+type useSignUnFormProps = {
+  onSuccess?: () => void;
+};
+
+export const useSignUnForm = ({ onSuccess }: useSignUnFormProps) => {
   const [userSignUp, { loading }] = useUserSignUp();
 
-  const formMethods = useForm<SignUpRequest>();
+  const { changeAccessToken } = useAuthorization();
+
+  const formMethods = useForm<SignUpRequest>({
+    defaultValues: {
+      email: "",
+      password: "",
+      passwordConfirm: "",
+    },
+    resolver: signUpResolver,
+    mode: "onTouched",
+  });
 
   const onSubmit = async ({
     email,
@@ -22,9 +37,11 @@ export const useSignUnForm = () => {
         Alert.alert(response.data?.userSignUp.problem?.message);
       }
       if (response.data?.userSignUp.token) {
-        AsyncStorageService.saveAccessToken(response.data.userSignUp.token);
-        // navigation.navigate("MainStack", { screen: "Congrats" });
+        changeAccessToken(response.data.userSignUp.token);
       }
+      setTimeout(() => {
+        onSuccess?.();
+      }, 1);
     } catch (error) {
       Alert.alert(error.message);
     }
@@ -34,5 +51,9 @@ export const useSignUnForm = () => {
     formMethods,
     loading,
     onSubmit: formMethods.handleSubmit(onSubmit),
+    isValid: formMethods.formState.isValid,
   };
 };
+function changeAccessToken(token: string) {
+  throw new Error("Function not implemented.");
+}
