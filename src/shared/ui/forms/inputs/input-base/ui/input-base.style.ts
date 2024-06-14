@@ -4,14 +4,15 @@ import { InputBaseProps } from "./input-base";
 import { useThemeObject } from "@shared/themes";
 import { TYPOGRAPHY } from "@shared/constants";
 
-type PickedInputBaseProps = Pick<InputBaseProps, "style">;
-export const getStyles = ({ style }: PickedInputBaseProps) => {
+type PickedInputBaseProps = Pick<InputBaseProps, "style" | "error">;
+export const getStyles = ({ style, error }: PickedInputBaseProps) => {
   const { styles } = useThemeObject(createStyles);
 
   return {
-    root: [styles.root, style],
-    input: styles.input,
-    labelText: styles.labelText,
+    root: [styles.root, error && styles.errorRoot, style],
+    input: [styles.input, error && styles.errorInput],
+    labelText: [styles.labelText, error && styles.errorLabel],
+    errorText: styles.errorText,
   };
 };
 
@@ -30,6 +31,21 @@ const createStyles = (theme: Theme) => {
     labelText: {
       color: theme.color.dark,
       ...TYPOGRAPHY.headline1Semibold14,
+    },
+    errorText: {
+      position: "absolute",
+      bottom: -18,
+      ...TYPOGRAPHY.body6Regular14,
+      color: theme.color.errorClr,
+    },
+    errorInput: {
+      color: theme.color.errorClr,
+    },
+    errorLabel: {
+      color: theme.color.errorClr,
+    },
+    errorRoot: {
+      borderBottomColor: theme.color.errorClr,
     },
   });
 

@@ -11,10 +11,12 @@ const LIGHT_COLOR_THEME: ColorTheme = {
   primary: "#02FF3A",
   primaryPress: "#75C537",
   title: "#87b71f",
+  titlePressed: "#618909",
   disabled: "#cfcfcf",
   primaryBtn: "#87b71f",
   primaryBtnText: "#FFFFFF",
   errorClr: "#C2534C",
+  menu: "#dedede",
 };
 
 export const LIGHT_THEME_ID = "default-light";

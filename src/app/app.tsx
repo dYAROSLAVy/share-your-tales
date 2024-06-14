@@ -1,4 +1,7 @@
 import "react-native-gesture-handler";
+if (__DEV__) {
+  require("../../ReactotronConfig");
+}
 import React from "react";
 import { RootStack } from "./navigation/root-stack";
 import { ApolloProvider } from "@apollo/client";

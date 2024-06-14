@@ -1,15 +1,25 @@
 import { useUserEditProfile, useUserMe } from "@entities/user/api";
 import { EditProfileRequest, GenderType } from "@shared/apollo";
+import { AppRoutes } from "@shared/navigation/app-routes";
+import { ProfileScreenProps } from "@shared/navigation/screen-props";
 import { ImageLink } from "@shared/utils";
 import { ImageModel } from "@shared/utils/model/types";
 import { useForm } from "react-hook-form";
 import { Alert } from "react-native";
 
-export const useUserEditProfileForm = (
-  image: ImageModel,
-  selectedId?: string,
-  date?: string
-) => {
+type useUserEditProfileFormProps = {
+  image: ImageModel;
+  selectedId?: string;
+  date?: string;
+  onGoBack?: () => void;
+};
+
+export const useUserEditProfileForm = ({
+  image,
+  selectedId,
+  date,
+  onGoBack,
+}: useUserEditProfileFormProps) => {
   const [userEditProfile, { loading }] = useUserEditProfile();
 
   const { data } = useUserMe();
@@ -64,6 +74,7 @@ export const useUserEditProfileForm = (
           phone,
         },
       });
+      onGoBack?.();
     } catch (error) {
       Alert.alert(error.message);
     }

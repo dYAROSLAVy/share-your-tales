@@ -8,7 +8,7 @@ import { createStyles } from "./choice-photo-modal.styles";
 type ChoicePhotoModalProps = {
   isDeleteButton?: boolean;
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  setImage?: React.Dispatch<React.SetStateAction<string | null |undefined>>;
+  setImage?: React.Dispatch<React.SetStateAction<string | null | undefined>>;
   launchImageLibrary: () => void;
 } & BaseModalProps;
 
@@ -28,21 +28,25 @@ export const ChoicePhotoModal: FC<ChoicePhotoModalProps> = ({
   return (
     <BaseModal {...props}>
       <View>
-        <ButtonPrimary text="Take a photo" isMedium />
+        <ButtonPrimary style={styles.top} text="Take a photo" isMedium />
         <ButtonPrimary
+          style={styles.middle}
           text="Choose from the library"
           isMedium
           onPress={() => onGalleryClick()}
         />
         {isDeleteButton && (
           <ButtonPrimary
+            style={styles.bottom}
             text="Delete photo"
             isMedium
+            isDelete
             onPress={setImage ? () => setImage(null) : undefined}
           />
         )}
       </View>
       <ButtonPrimary
+        style={styles.cancel}
         text="Cancel"
         isMedium
         onPress={() => setModalVisible(false)}

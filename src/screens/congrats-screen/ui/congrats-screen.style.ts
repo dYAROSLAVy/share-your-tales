@@ -6,9 +6,13 @@ export const createStyles = (theme: Theme) => {
     root: {
       flex: 1,
       justifyContent: "center",
+      backgroundColor: theme.color.lightest,
+    },
+    inner: {
+      flex: 1,
+      justifyContent: "center",
       gap: 52,
       padding: 16,
-      backgroundColor: theme.color.lightest,
     },
     topWrap: {
       alignItems: "center",

@@ -4,4 +4,6 @@ export * from "./my-posts/__generated__/my-posts";
 export * from "./post-create/__generated__/post-create";
 export * from "./post-delete/__generated__/post-delete";
 export * from "./post-delete/__generated__/post-delete";
-export * from "./post/__generated__/get-posts";
+export * from "./post/__generated__/get-post";
+export * from "./post-like/__generated__/post-like";
+export * from "./post-unlike/__generated__/post-unlike";

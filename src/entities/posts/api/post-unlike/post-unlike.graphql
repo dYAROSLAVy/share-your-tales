@@ -1,0 +1,29 @@
+mutation PostUnlike($id: String!) {
+  postUnlike(input: { id: $id }) {
+    author {
+      avatarUrl
+      birthDate
+      country
+      createdAt
+      deletedAt
+      email
+      firstName
+      gender
+      id
+      lastName
+      middleName
+      phone
+      updatedAt
+    }
+    authorId
+    createdAt
+    deletedAt
+    description
+    id
+    isLiked
+    likesCount
+    mediaUrl
+    title
+    updatedAt
+  }
+}

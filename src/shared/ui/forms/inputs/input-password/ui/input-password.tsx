@@ -1,4 +1,3 @@
-import { Text, TextInput, View } from "react-native";
 import { FC, useState } from "react";
 import { InputBase, InputBaseProps } from "../../input-base/ui/input-base";
 import { createStyles } from "./input-password.style";

@@ -13,21 +13,23 @@ export const CongratsScreen: FC<CongratsScreenProps> = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.root}>
-      <View style={styles.topWrap}>
-        <StatusTitle title={"CONGRATS"} />
-        <View style={styles.bottomWrap}>
-          <SvgCheckCircle width={18} height={18} />
-          <StatusText text="You have been registered" />
+      <View style={styles.inner}>
+        <View style={styles.topWrap}>
+          <StatusTitle title={"CONGRATS"} />
+          <View style={styles.bottomWrap}>
+            <SvgCheckCircle width={18} height={18} />
+            <StatusText text="You have been registered" />
+          </View>
         </View>
+        <ButtonPrimary
+          text="Continue"
+          onPress={() =>
+            navigation.navigate(AppRoutes.MainStack, {
+              screen: AppRoutes.MainScreen,
+            })
+          }
+        />
       </View>
-      <ButtonPrimary
-        text="Continue"
-        onPress={() =>
-          navigation.navigate(AppRoutes.MainStack, {
-            screen: AppRoutes.MainScreen,
-          })
-        }
-      />
     </SafeAreaView>
   );
 };

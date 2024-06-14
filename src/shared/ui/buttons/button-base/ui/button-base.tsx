@@ -10,12 +10,22 @@ import { SvgProps } from "react-native-svg";
 export type ButtonBaseProps = {
   text?: string;
   isMedium?: boolean;
+  isPressed?: boolean;
+  isDelete?: boolean;
   isLoading?: boolean;
   icon?: (props: SvgProps) => JSX.Element;
 } & TouchableHighlightProps;
 
 export const ButtonBase: FC<ButtonBaseProps> = (
-  { children, style, underlayColor, disabled, onPress },
+  {
+    children,
+    style,
+    underlayColor,
+    disabled,
+    onPress,
+    onShowUnderlay,
+    onHideUnderlay,
+  },
   ...props
 ) => {
   const { rootStyles } = getStyles({ style });
@@ -24,6 +34,8 @@ export const ButtonBase: FC<ButtonBaseProps> = (
     <TouchableHighlight
       onPress={onPress}
       style={rootStyles}
+      onShowUnderlay={onShowUnderlay}
+      onHideUnderlay={onHideUnderlay}
       underlayColor={underlayColor}
       activeOpacity={1}
       disabled={disabled}

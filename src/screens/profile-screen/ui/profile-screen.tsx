@@ -41,10 +41,14 @@ export const ProfileScreen: FC<ProfileScreenProps> = ({ navigation }) => {
     onComplete: () => setModalVisible(false),
   });
 
+  const onGoBack = () => {
+    navigation.goBack();
+  };
+
   const {
     onSubmit,
     formMethods: { control },
-  } = useUserEditProfileForm(image, selectedId, date);
+  } = useUserEditProfileForm({ image, selectedId, date, onGoBack });
 
   return (
     <SafeAreaView style={styles.root}>

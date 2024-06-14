@@ -1,5 +1,5 @@
 import { Image, Text, TouchableHighlight, View } from "react-native";
-import { useThemeObject } from "@shared/themes";
+import { useTheme, useThemeObject } from "@shared/themes";
 import { FC } from "react";
 import { SvgHeart } from "@shared/assets/icons/components/heart";
 import { formatDate } from "@shared/utils";
@@ -14,6 +14,8 @@ export type PostProps = {
   isSwipeable?: boolean;
   isBig?: boolean;
   PostDeleteArea?: any;
+  postLike: () => void;
+  postUnlike: () => void;
   navigation?: any;
 } & Pick<
   PostModel,
@@ -24,6 +26,7 @@ export type PostProps = {
   | "mediaUrl"
   | "id"
   | "description"
+  | "isLiked"
 >;
 
 export const Post: FC<PostProps> = ({
@@ -32,16 +35,21 @@ export const Post: FC<PostProps> = ({
   navigation,
   isBig,
   author,
+  postLike,
+  postUnlike,
   PostDeleteArea,
   description,
   isSwipeable,
   id,
   likesCount,
+  isLiked,
   mediaUrl,
 }) => {
   const styles = getStyles({
     isBig,
   });
+
+  const { theme } = useTheme();
 
   const date = new Date(createdAt);
   const normalDate = formatDate(Number(date));
@@ -71,7 +79,7 @@ export const Post: FC<PostProps> = ({
             style={styles.imageStyles}
             // onError={({ nativeEvent: {error} }) => console.log(error)}
           />
-          {isBig && <Text>{description}</Text>}
+          {isBig && <Text style={styles.textStyles}>{description}</Text>}
           <View style={styles.bottomInner}>
             <View style={styles.authorWrap}>
               <Avatar
@@ -82,17 +90,23 @@ export const Post: FC<PostProps> = ({
                 width={16}
                 height={22}
               />
-              <Text>
+              <Text style={styles.author}>
                 {author.firstName ? author.firstName : "Anonymous"}
                 {author.lastName ? ` ${author.lastName.charAt(0)}.` : ""}
               </Text>
             </View>
             <View style={styles.interactionWrap}>
-              <ButtonIcon style={styles.btnLike} text={`${likesCount}`}>
-                <SvgHeart />
+              <ButtonIcon
+                onPress={isLiked ? () => postUnlike() : () => postLike()}
+                style={styles.btnLike}
+                text={`${likesCount}`}
+              >
+                <SvgHeart
+                  color={isLiked ? theme.color.primary : theme.color.darkest}
+                />
               </ButtonIcon>
               <ButtonIcon style={styles.btnShared}>
-                <SvgShare />
+                <SvgShare color={theme.color.darkest} />
               </ButtonIcon>
             </View>
           </View>

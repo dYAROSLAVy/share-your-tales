@@ -1,17 +1,27 @@
 import { ButtonBase, ButtonBaseProps } from "../../button-base";
 import { Text, View } from "react-native";
-import { FC } from "react";
-import { createStyles } from "./button-text.styles";
-import { useThemeObject } from "@shared/themes";
+import { FC, useState } from "react";
+import { getStyles } from "./button-text.styles";
 
 export const ButtonText: FC<ButtonBaseProps> = ({
   text,
   onPress,
+  onShowUnderlay,
+  onHideUnderlay,
   ...props
 }) => {
-  const styles = useThemeObject(createStyles);
+  const [isPressed, setIsPressed] = useState(false);
+
+  const styles = getStyles(isPressed);
+
   return (
-    <ButtonBase onPress={onPress} underlayColor="transparent" {...props}>
+    <ButtonBase
+      onPress={onPress}
+      underlayColor="transparent"
+      onShowUnderlay={() => setIsPressed(true)}
+      onHideUnderlay={() => setIsPressed(false)}
+      {...props}
+    >
       <Text style={styles.text}>{text}</Text>
       <View style={styles.decor}></View>
     </ButtonBase>

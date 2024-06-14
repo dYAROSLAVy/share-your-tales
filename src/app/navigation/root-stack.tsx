@@ -5,6 +5,7 @@ import { MainStack } from "./main-stack/main-stack";
 
 import { useAuthorization } from "../../entities/user/api/authorization-context/ authorization-context";
 import { DEFAULT_STACK_OPTIONS } from "@shared/navigation/navigation-config";
+import { CongratsScreen } from "@screens/congrats-screen";
 
 const Stack = createNativeStackNavigator();
 

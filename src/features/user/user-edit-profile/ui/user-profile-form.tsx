@@ -6,7 +6,6 @@ import { FormInner, FormTitle, InputBase } from "@shared/ui/forms";
 import { Control } from "react-hook-form";
 import { FC, useMemo, useState } from "react";
 import RadioGroup, { RadioButtonProps } from "react-native-radio-buttons-group";
-import { TYPOGRAPHY } from "@shared/constants";
 import { EditProfileRequest } from "@shared/apollo";
 
 type UserProfileFormProps = {
@@ -34,25 +33,23 @@ export const UserProfileForm: FC<UserProfileFormProps> = ({
         id: "MALE",
         label: "Male",
         value: "MALE",
+        borderColor: styles.checkColor.color,
         borderSize: 1,
+        color: styles.checkInner.color,
         size: 20,
-        containerStyle: {
-          marginHorizontal: 0,
-          paddingHorizontal: 0,
-          gap: 0,
-        },
-        labelStyle: { ...TYPOGRAPHY.body5Regular16 },
+        containerStyle: styles.checkContainer,
+        labelStyle: styles.labelStyle,
       },
       {
         id: "FEMALE",
         label: "Female",
         value: "FEMALE",
+        borderColor: styles.checkColor.color,
         borderSize: 1,
         size: 20,
-        containerStyle: {
-          marginHorizontal: 0,
-        },
-        labelStyle: { ...TYPOGRAPHY.body5Regular16 },
+        color: styles.checkInner.color,
+        containerStyle: styles.checkContainer,
+        labelStyle: styles.labelStyle,
       },
     ],
     []
@@ -106,8 +103,8 @@ export const UserProfileForm: FC<UserProfileFormProps> = ({
             onPressIn={() => setOpen(true)}
           />
           <BirthDatePicker
-            datee={date}
-            setDatee={setDate}
+            initialDate={date}
+            setNewDate={setDate}
             open={open}
             setOpen={setOpen}
           />

@@ -22,10 +22,11 @@ export const FullPostScreen: FC<FullPostScreenProps> = ({
 
   return (
     <SafeAreaView style={styles.root}>
-      <NavigationHeader navigation={navigation} tile={post?.title} />
+      <NavigationHeader navigation={navigation} tile={post?.title} isFullPost />
       {!loading && (
         <Post
           author={post?.author}
+          isLiked={post?.isLiked}
           isBig
           mediaUrl={post?.mediaUrl}
           createdAt={post?.createdAt}

@@ -20,6 +20,8 @@ export const getStyles = ({ isBig }: PickedPostProps) => {
     btnShared: styles.btnShared,
     btnLike: styles.btnLike,
     avatarStyles: styles.avatarStyles,
+    author: styles.author,
+    textStyles: styles.textStyles,
   };
 };
 
@@ -44,6 +46,7 @@ const createStyles = (theme: Theme) => {
     },
     date: {
       ...TYPOGRAPHY.body6Regular14,
+      color: theme.color.dark,
     },
     bottomInner: {
       flexDirection: "row",
@@ -80,11 +83,17 @@ const createStyles = (theme: Theme) => {
       height: 24,
       borderRadius: 12,
     },
+    author: {
+      color: theme.color.dark,
+    },
     isBig: {
       backgroundColor: theme.color.lightest,
     },
     topInnerPrimary: {
       justifyContent: "center",
+    },
+    textStyles: {
+      color: theme.color.darker,
     },
   });
 

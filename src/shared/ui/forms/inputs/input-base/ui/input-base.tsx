@@ -1,5 +1,6 @@
 import { Text, TextInput, TextInputProps, View } from "react-native";
 import {
+  FieldError,
   FieldValues,
   useController,
   UseControllerProps,
@@ -8,6 +9,7 @@ import { getStyles } from "./input-base.style";
 
 export type InputBaseProps = {
   label?: string;
+  error?: FieldError | undefined;
 } & TextInputProps;
 
 type OmittedTagProps = Omit<
@@ -29,7 +31,6 @@ export const InputBase = <T extends FieldValues>({
   secureTextEntry,
   ...props
 }: Props<T>) => {
-  const { root, input, labelText } = getStyles({ style });
   const {
     field: { value, onChange, ...field },
     fieldState: { error },
@@ -38,6 +39,8 @@ export const InputBase = <T extends FieldValues>({
     name,
   });
 
+  const { root, input, labelText, errorText } = getStyles({ style, error });
+
   return (
     <View style={root}>
       <Text style={labelText}>{label}</Text>
@@ -45,7 +48,7 @@ export const InputBase = <T extends FieldValues>({
         style={input}
         autoCapitalize={"none"}
         placeholder={placeholder}
-        placeholderTextColor={"#9b9b9b"}
+        placeholderTextColor={error ? "#c2534c" : "#9b9b9b"}
         onChangeText={onChange}
         keyboardType={"default"}
         secureTextEntry={secureTextEntry}
@@ -54,7 +57,7 @@ export const InputBase = <T extends FieldValues>({
         {...props}
       />
       {children}
-      {error?.message}
+      <Text style={errorText}>{error?.message}</Text>
     </View>
   );
 };

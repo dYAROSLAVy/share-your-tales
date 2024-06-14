@@ -24,7 +24,7 @@ export const createStyles = (theme: Theme) => {
       width: 38,
       height: 38,
       borderRadius: 20,
-      backgroundColor: theme.color.primaryBtn,
+      backgroundColor: theme.color.title,
     },
   });
   return styles;

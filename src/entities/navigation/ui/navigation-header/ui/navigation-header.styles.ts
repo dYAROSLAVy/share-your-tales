@@ -1,8 +1,20 @@
 import { TYPOGRAPHY } from "@shared/constants";
+import { useThemeObject } from "@shared/themes";
 import { Theme } from "@shared/themes/model/types";
 import { StyleSheet } from "react-native";
+import { NavigationHeaderProps } from "./navigation-header";
 
-export const createStyles = (theme: Theme) => {
+type PickedNavigationHeaderProps = Pick<NavigationHeaderProps, "isFullPost">;
+export const getStyles = ({ isFullPost }: PickedNavigationHeaderProps) => {
+  const { styles } = useThemeObject(createStyles);
+
+  return {
+    wrapper: styles.wrapper,
+    textStyles: [styles.textStyles, isFullPost && styles.textStylesFullPost],
+  };
+};
+
+const createStyles = (theme: Theme) => {
   const styles = StyleSheet.create({
     wrapper: {
       flexDirection: "row",
@@ -15,6 +27,10 @@ export const createStyles = (theme: Theme) => {
       ...TYPOGRAPHY.headline1Semibold18,
       color: theme.color.darkest,
     },
+    textStylesFullPost: {
+      marginLeft: -24,
+    },
   });
-  return styles;
+
+  return { styles };
 };

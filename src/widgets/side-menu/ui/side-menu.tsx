@@ -10,18 +10,34 @@ import { ButtonIcon } from "@shared/ui/buttons";
 import { Avatar } from "@shared/ui/avatar";
 
 import { useAuthorization, useUserMe } from "@entities/user";
+import { useState } from "react";
+import { SvgMoon } from "@shared/assets/icons/components/moon";
 
 export const SideMenu = ({ navigation }) => {
   const styles = useThemeObject(createStyles);
 
-  const { toggleTheme } = useTheme();
+  const { toggleTheme, theme } = useTheme();
 
   const { logout } = useAuthorization();
 
   const { data } = useUserMe();
 
+  const [isLight, setIsLight] = useState(true);
+
+  const onThemeClick = () => {
+    if (!isLight) {
+      setIsLight(true);
+    }
+    if (isLight) {
+      setIsLight(false);
+    }
+    toggleTheme();
+  };
+
   return (
-    <DrawerContentScrollView contentContainerStyle={{ flex: 1 }}>
+    <DrawerContentScrollView
+      contentContainerStyle={styles.contentContainerStyle}
+    >
       <SafeAreaView style={styles.root}>
         <View style={styles.topInner}>
           <View style={styles.userWrap}>
@@ -48,16 +64,23 @@ export const SideMenu = ({ navigation }) => {
               text="Profile"
               onPress={() => navigation.navigate("Profile")}
             >
-              <SvgUser width={24} height={24} />
+              <SvgUser width={24} height={24} color={theme.color.darkest} />
             </ButtonIcon>
             <ButtonIcon text="Exit" onPress={logout}>
-              <SvgExit />
+              <SvgExit color={theme.color.darkest} />
             </ButtonIcon>
           </View>
         </View>
-        <ButtonIcon text="Light theme" onPress={toggleTheme}>
-          <SvgSun />
-        </ButtonIcon>
+        {isLight && (
+          <ButtonIcon text="Light theme" onPress={onThemeClick}>
+            <SvgSun color={theme.color.darkest} />
+          </ButtonIcon>
+        )}
+        {!isLight && (
+          <ButtonIcon text="Night theme" onPress={onThemeClick}>
+            <SvgMoon />
+          </ButtonIcon>
+        )}
       </SafeAreaView>
     </DrawerContentScrollView>
   );

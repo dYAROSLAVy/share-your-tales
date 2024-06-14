@@ -2,42 +2,27 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FavoritesScreen } from "@screens/favorites-screen";
 import { MainScreen } from "@screens/main-screen";
 import { MyPostsScreen } from "@screens/my-posts-screen";
-import { OUTFIT_FONT } from "@shared/assets/fonts";
 import { SvgBookmark } from "@shared/assets/icons/components/bookmark";
 import { SvgHome } from "@shared/assets/icons/components/home";
 import { SvgPhoto } from "@shared/assets/icons/components/photo";
-import { useTheme } from "@shared/themes";
+import { useTheme, useThemeObject } from "@shared/themes";
+import { createStyles } from "./main-tabs.styles";
 
 const Tab = createBottomTabNavigator();
 
 export const MainTabs = () => {
   const { theme } = useTheme();
 
+  const styles = useThemeObject(createStyles);
+
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarStyle: {
-          height: 100,
-          backgroundColor: theme.color.lightest,
-          borderColor: "transparent",
-          shadowColor: "transparent",
-          borderTopWidth: 0,
-          elevation: 0,
-          shadowOpacity: 0,
-          shadowOffset: { height: 0, width: 0 },
-          shadowRadius: 0,
-          alignItems: "center",
-          paddingTop: 15.5,
-          paddingBottom: 36.5,
-        },
-        tabBarLabelStyle: {
-          fontSize: 12,
-          fontWeight: 500,
-          fontFamily: OUTFIT_FONT[500],
-        },
-        tabBarActiveTintColor: theme.color.primaryBtn,
-        tabBarInactiveTintColor: theme.color.light,
+        tabBarStyle: styles.tabBarStyle,
+        tabBarLabelStyle: styles.tabBarLabelStyle,
+        tabBarActiveTintColor: theme.color.title,
+        tabBarInactiveTintColor: theme.color.menu,
       }}
     >
       <Tab.Screen
