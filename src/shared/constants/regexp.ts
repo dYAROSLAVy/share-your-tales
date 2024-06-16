@@ -6,7 +6,7 @@ export const REGEXP = {
   replaceRegexpForNumberPhone: /[^ a-zа-яё\d]/iu,
   whitespaceRegexp: / +/g,
   name: /^[A-Za-z][A-Za-z\s-]/,
-  phone: /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/,
+  phone: /^((\+7)+([0-9]){10})$/,
   space: /\s/g,
   uploadFileName: /[^a-zA-Z0-9-_.]/g,
   password: /^((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/,

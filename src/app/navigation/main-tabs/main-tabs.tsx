@@ -26,7 +26,7 @@ export const MainTabs = () => {
       }}
     >
       <Tab.Screen
-        name="Main"
+        name="MainTab"
         component={MainScreen}
         options={{
           tabBarIcon: SvgHome,

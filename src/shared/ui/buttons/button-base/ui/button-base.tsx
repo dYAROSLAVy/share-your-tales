@@ -4,7 +4,7 @@ import {
   TouchableHighlightProps,
   View,
 } from "react-native";
-import { FC } from "react";
+import React, { FC } from "react";
 import { SvgProps } from "react-native-svg";
 
 export type ButtonBaseProps = {
@@ -14,7 +14,8 @@ export type ButtonBaseProps = {
   isDelete?: boolean;
   isLoading?: boolean;
   icon?: (props: SvgProps) => JSX.Element;
-} & TouchableHighlightProps;
+} & TouchableHighlightProps &
+  SvgProps;
 
 export const ButtonBase: FC<ButtonBaseProps> = (
   {

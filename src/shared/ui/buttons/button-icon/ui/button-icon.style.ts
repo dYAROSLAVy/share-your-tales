@@ -9,6 +9,7 @@ export const getStyles = (isPressed: boolean) => {
     root: styles.root,
     textStyles: [styles.textStyles, isPressed && styles.textActive],
     underlay: styles.underlay,
+    pressed: styles.pressed,
   };
 };
 
@@ -26,6 +27,9 @@ const createStyles = (theme: Theme) => {
       color: "transparent",
     },
     textActive: {
+      color: theme.color.titlePressed,
+    },
+    pressed: {
       color: theme.color.titlePressed,
     },
   });

@@ -18,4 +18,5 @@ export type MainStackParams = RootStackParams & {
   [AppRoutes.ProfileScreen]: undefined;
   [AppRoutes.FullPostScreen]: { id: string };
   [AppRoutes.FavoritesScreen]: undefined;
+  [AppRoutes.MainTab]: undefined;
 };

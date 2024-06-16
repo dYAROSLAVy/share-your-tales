@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { CongratsScreen } from "@screens/congrats-screen";
-
 import { MainDrawer } from "../main-drawer/main-drawer";
 import { CreatePostScreen } from "@screens/create-post-screen";
 import { ProfileScreen } from "@screens/profile-screen";

@@ -17,6 +17,8 @@ const DARK_COLOR_THEME: ColorTheme = {
   primaryBtnText: "#b8de64",
   errorClr: "#C2534C",
   menu: "#696969",
+  plus: "#131313",
+  plusIcon: "#b8de64",
 };
 
 export const DARK_THEME_ID = "default-dark";

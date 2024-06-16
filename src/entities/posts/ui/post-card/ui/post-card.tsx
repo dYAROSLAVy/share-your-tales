@@ -1,4 +1,11 @@
-import { Image, Text, TouchableHighlight, View } from "react-native";
+import {
+  Alert,
+  Image,
+  Share,
+  Text,
+  TouchableHighlight,
+  View,
+} from "react-native";
 import { useTheme, useThemeObject } from "@shared/themes";
 import { FC } from "react";
 import { SvgHeart } from "@shared/assets/icons/components/heart";
@@ -9,6 +16,7 @@ import { Swipeable } from "react-native-gesture-handler";
 import { SvgShare } from "@shared/assets/icons/components/share";
 import { Avatar } from "@shared/ui/avatar";
 import { getStyles } from "./post-card.styles";
+import { linking } from "@shared/navigation/linking";
 
 export type PostProps = {
   isSwipeable?: boolean;
@@ -53,6 +61,25 @@ export const Post: FC<PostProps> = ({
 
   const date = new Date(createdAt);
   const normalDate = formatDate(Number(date));
+
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message: `${linking.prefixes[0]}main/post/${id}`,
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error: any) {
+      Alert.alert(error.message);
+    }
+  };
 
   return (
     <Swipeable
@@ -105,7 +132,7 @@ export const Post: FC<PostProps> = ({
                   color={isLiked ? theme.color.primary : theme.color.darkest}
                 />
               </ButtonIcon>
-              <ButtonIcon style={styles.btnShared}>
+              <ButtonIcon style={styles.btnShared} onPress={onShare}>
                 <SvgShare color={theme.color.darkest} />
               </ButtonIcon>
             </View>

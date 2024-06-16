@@ -28,7 +28,7 @@ const signUpSchema = z
       cts.addIssue({
         code: z.ZodIssueCode.custom,
         message: VALIDATION_ERRORS.passwordsNotMatch,
-        path: ["repeatPassword"],
+        path: ["passwordConfirm"],
       });
     }
   });
