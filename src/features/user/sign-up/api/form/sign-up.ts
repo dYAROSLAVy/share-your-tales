@@ -54,6 +54,3 @@ export const useSignUnForm = ({ onSuccess }: useSignUnFormProps) => {
     isValid: formMethods.formState.isValid,
   };
 };
-function changeAccessToken(token: string) {
-  throw new Error("Function not implemented.");
-}

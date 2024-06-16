@@ -4,7 +4,7 @@ import { Image, View } from "react-native";
 
 type PostsAddButtonProps = {
   onPress: () => void;
-  imageURI: string | null;
+  imageURI?: string | null;
 };
 
 export const PostsUploadPhoto: FC<PostsAddButtonProps> = ({

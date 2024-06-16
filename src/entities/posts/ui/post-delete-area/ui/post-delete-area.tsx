@@ -1,20 +1,32 @@
-import { ButtonIcon } from "@shared/ui/buttons";
-import { View } from "react-native";
+import { SvgTrash } from "@shared/assets/icons/components/trash";
+import { ButtonBase, ButtonIcon } from "@shared/ui/buttons";
+import { Text, View } from "react-native";
 
 export type PostDeleteAreaProps = {
   onDeleteClick: (id: string) => Promise<void>;
   id: string;
-  styles: any;
+  styles: {};
+  deleteText: {};
+  deleteBtn: {};
+  deleteInner: {};
 };
 
 export const PostDeleteArea = ({
   onDeleteClick,
   id,
   styles,
+  deleteText,
+  deleteBtn,
+  deleteInner,
 }: PostDeleteAreaProps) => {
   return (
     <View style={styles}>
-      <ButtonIcon text="Delete" onPress={() => onDeleteClick(id)} />
+      <ButtonBase style={deleteBtn} onPress={() => onDeleteClick(id)}>
+        <View style={deleteInner}>
+          <SvgTrash />
+          <Text style={deleteText}>Delete</Text>
+        </View>
+      </ButtonBase>
     </View>
   );
 };

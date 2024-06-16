@@ -119,6 +119,7 @@ export const UserProfileForm: FC<UserProfileFormProps> = ({
             label="Phone number"
             placeholder="Enter your phone number"
             control={control}
+            inputMode="tel"
           />
           <InputBase
             name="country"

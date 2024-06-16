@@ -1,4 +1,4 @@
-import { api, fileApi as $fileApi } from "@shared/axios";
+import { api, fileApi } from "@shared/axios";
 import { ImageModel } from "../model/types";
 
 export const ImageLink = {
@@ -8,7 +8,7 @@ export const ImageLink = {
     );
   },
   uploadImage: async (link: string, data: ImageModel) => {
-    return $fileApi.put(link, data);
+    return fileApi.put(link, data);
   },
   deleteImage: async (fileKey: string, category: "AVATARS" | "POSTS") => {
     return api.delete<void>(

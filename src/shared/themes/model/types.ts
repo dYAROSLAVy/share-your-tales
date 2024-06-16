@@ -15,6 +15,8 @@ export type ColorTheme = {
   primaryBtnText: string;
   errorClr: string;
   menu: string;
+  plus: string;
+  plusIcon: string;
 };
 
 export type Theme = {

@@ -8,11 +8,13 @@ export enum AppRoutes {
 
   MainStack = "MainStack",
   MainScreen = "Main",
+  MainTab = "MainTab",
   CongratsScreen = "Congrats",
   CreatePostScreen = "CreatePost",
   ProfileScreen = "Profile",
   FullPostScreen = "FullPost",
   FavoritesScreen = "Favorites",
+  MyPostScreen = "MyPosts",
 
   // main-drawer
 

@@ -1,15 +1,25 @@
 import { TYPOGRAPHY } from "@shared/constants";
 import { Theme } from "@shared/themes/model/types";
 import { StyleSheet } from "react-native";
-import { ButtonBaseProps } from "../../button-base";
 import { useThemeObject } from "@shared/themes";
 
-export const getStyles = (isPressed: boolean) => {
+export const getStyles = (
+  isPressed: boolean,
+  disabled: boolean | undefined
+) => {
   const { styles } = useThemeObject(createStyles);
 
   return {
-    text: [styles.text, isPressed && styles.textActive],
-    decor: [styles.decor, isPressed && styles.decorActive],
+    text: [
+      styles.text,
+      isPressed && styles.textActive,
+      disabled && styles.disabled,
+    ],
+    decor: [
+      styles.decor,
+      isPressed && styles.decorActive,
+      disabled && styles.disabledDecor,
+    ],
   };
 };
 
@@ -29,6 +39,12 @@ const createStyles = (theme: Theme) => {
     },
     decorActive: {
       backgroundColor: theme.color.titlePressed,
+    },
+    disabled: {
+      color: theme.color.darker,
+    },
+    disabledDecor: {
+      backgroundColor: theme.color.darker,
     },
   });
 

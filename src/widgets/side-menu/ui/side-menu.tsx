@@ -63,23 +63,36 @@ export const SideMenu = ({ navigation }) => {
             <ButtonIcon
               text="Profile"
               onPress={() => navigation.navigate("Profile")}
-            >
-              <SvgUser width={24} height={24} color={theme.color.darkest} />
-            </ButtonIcon>
-            <ButtonIcon text="Exit" onPress={logout}>
-              <SvgExit color={theme.color.darkest} />
-            </ButtonIcon>
+              icon={SvgUser}
+              width={24}
+              height={24}
+            />
+            <ButtonIcon
+              text="Exit"
+              onPress={logout}
+              icon={SvgExit}
+              width={24}
+              height={24}
+            />
           </View>
         </View>
         {isLight && (
-          <ButtonIcon text="Light theme" onPress={onThemeClick}>
-            <SvgSun color={theme.color.darkest} />
-          </ButtonIcon>
+          <ButtonIcon
+            text="Light theme"
+            onPress={onThemeClick}
+            icon={SvgSun}
+            width={24}
+            height={24}
+          />
         )}
         {!isLight && (
-          <ButtonIcon text="Night theme" onPress={onThemeClick}>
-            <SvgMoon />
-          </ButtonIcon>
+          <ButtonIcon
+            text="Night theme"
+            onPress={onThemeClick}
+            icon={SvgMoon}
+            width={24}
+            height={24}
+          />
         )}
       </SafeAreaView>
     </DrawerContentScrollView>

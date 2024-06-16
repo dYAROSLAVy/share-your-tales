@@ -5,7 +5,7 @@ import { StyleSheet } from "react-native";
 export const createStyles = (theme: Theme) => {
   const styles = StyleSheet.create({
     tabBarStyle: {
-      height: 100,
+      height: 80,
       backgroundColor: theme.color.lightest,
       borderColor: "transparent",
       shadowColor: "transparent",
@@ -16,7 +16,7 @@ export const createStyles = (theme: Theme) => {
       shadowRadius: 0,
       alignItems: "center",
       paddingTop: 15.5,
-      paddingBottom: 36.5,
+      paddingBottom: 20,
     },
     tabBarLabelStyle: {
       fontSize: 12,

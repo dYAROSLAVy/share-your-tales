@@ -10,6 +10,7 @@ import { getStyles } from "./input-base.style";
 export type InputBaseProps = {
   label?: string;
   error?: FieldError | undefined;
+  isTextArea?: boolean;
 } & TextInputProps;
 
 type OmittedTagProps = Omit<
@@ -27,6 +28,7 @@ export const InputBase = <T extends FieldValues>({
   children,
   name,
   control,
+  isTextArea,
   style,
   secureTextEntry,
   ...props
@@ -39,13 +41,18 @@ export const InputBase = <T extends FieldValues>({
     name,
   });
 
-  const { root, input, labelText, errorText } = getStyles({ style, error });
+  const { root, input, labelText, errorText } = getStyles({
+    style,
+    error,
+    isTextArea,
+  });
 
   return (
     <View style={root}>
       <Text style={labelText}>{label}</Text>
       <TextInput
         style={input}
+        multiline={isTextArea}
         autoCapitalize={"none"}
         placeholder={placeholder}
         placeholderTextColor={error ? "#c2534c" : "#9b9b9b"}

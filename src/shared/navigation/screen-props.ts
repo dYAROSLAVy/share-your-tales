@@ -41,3 +41,5 @@ export type FavoritesScreenProps = ScreenBaseProps<
   AppRoutes.FavoritesScreen,
   MainStackParams
 >;
+
+export type MainTabProps = ScreenBaseProps<AppRoutes.MainTab, MainStackParams>;

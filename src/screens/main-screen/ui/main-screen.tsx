@@ -5,9 +5,9 @@ import { PostsList } from "@widgets/posts-list";
 import { useUserMe } from "@entities/user";
 import { PostFilterType } from "@shared/apollo";
 import { FC, useState } from "react";
-import { MainScreenProps } from "@shared/navigation/screen-props";
+import { MainTabProps } from "@shared/navigation/screen-props";
 
-export const MainScreen: FC<MainScreenProps> = ({ navigation }) => {
+export const MainScreen: FC<MainTabProps> = ({ navigation }) => {
   const TABS = [
     {
       text: "New",

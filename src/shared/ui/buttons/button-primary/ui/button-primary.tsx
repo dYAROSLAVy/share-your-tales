@@ -1,9 +1,16 @@
 import { ButtonBase, ButtonBaseProps } from "../../button-base";
 import { Text } from "react-native";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { getStyles } from "./button-primary.styles";
 import { SvgLoading } from "@shared/assets/icons/components/loading";
 import { useTheme } from "@shared/themes";
+import Animated, {
+  useSharedValue,
+  withTiming,
+  Easing,
+  useAnimatedStyle,
+  withRepeat,
+} from "react-native-reanimated";
 
 export const ButtonPrimary: FC<ButtonBaseProps> = ({
   text,
@@ -27,6 +34,18 @@ export const ButtonPrimary: FC<ButtonBaseProps> = ({
     isMedium,
   });
 
+  const sv = useSharedValue<number>(0);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ rotate: `${sv.value * 360}deg` }],
+  }));
+
+  useEffect(() => {
+    sv.value = withRepeat(
+      withTiming(100, { duration: 100000, easing: Easing.linear })
+    );
+  }, [isLoading]);
+
   return (
     <ButtonBase
       style={rootStyles}
@@ -36,7 +55,11 @@ export const ButtonPrimary: FC<ButtonBaseProps> = ({
       onHideUnderlay={() => setIsPressed(false)}
       {...props}
     >
-      {isLoading && <SvgLoading />}
+      {isLoading && (
+        <Animated.View style={animatedStyle}>
+          <SvgLoading color={theme.color.titlePressed} />
+        </Animated.View>
+      )}
       {!isLoading && <Text style={textStyle}>{text}</Text>}
     </ButtonBase>
   );

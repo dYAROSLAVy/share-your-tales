@@ -22,6 +22,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9A6710185B284FB1A8B2A3FD /* outfit-semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B86A11650B74AC199FA36F1 /* outfit-semibold.ttf */; };
 		C8483378B13F4A67901CF9C6 /* nokwy-regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5A6C2CE4694A480C9412957E /* nokwy-regular.otf */; };
+		1C85B616953B434F9EB56DD0 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCD38255DEBB48879598AECF /* BootSplash.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		D34AAAB210B74CFCB72592A6 /* outfit-medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "outfit-medium.ttf"; path = "../src/shared/assets/fonts/outfit/outfit-medium.ttf"; sourceTree = "<group>"; };
 		EBEF84E9E4A04787B9510145 /* nokwy.ts */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = nokwy.ts; path = ../src/shared/assets/fonts/nokwy/nokwy.ts; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		CCD38255DEBB48879598AECF /* BootSplash.storyboard */ = {isa = PBXFileReference; name = "BootSplash.storyboard"; path = "ShareYourTales/BootSplash.storyboard"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
 				63B2CCC3FB2EC91799587DA8 /* PrivacyInfo.xcprivacy */,
+				CCD38255DEBB48879598AECF /* BootSplash.storyboard */,
 			);
 			name = ShareYourTales;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				5FD46B408ECF4DF9914D96CA /* outfit-medium.ttf in Resources */,
 				467F17BF8FFB4B92ABB96214 /* outfit-regular.ttf in Resources */,
 				9A6710185B284FB1A8B2A3FD /* outfit-semibold.ttf in Resources */,
+				1C85B616953B434F9EB56DD0 /* BootSplash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
