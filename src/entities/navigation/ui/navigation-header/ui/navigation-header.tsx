@@ -10,6 +10,7 @@ export type NavigationHeaderProps = {
   tile?: string;
   isFullPost?: boolean;
   isCross?: boolean;
+  isDisabled?: boolean;
   navigation: any;
   text?: string;
   onPress?: () => void;
@@ -23,6 +24,7 @@ export const NavigationHeader: FC<NavigationHeaderProps> = ({
   tile,
   onSubmit,
   isFullPost,
+  isDisabled,
   isCross,
   text,
   onPress,
@@ -31,15 +33,18 @@ export const NavigationHeader: FC<NavigationHeaderProps> = ({
   const { theme } = useTheme();
   return (
     <View style={styles.wrapper}>
-      <ButtonIcon onPress={() => navigation.goBack()}>
-        <SvgBack color={theme.color.darkest} />
-      </ButtonIcon>
+      <ButtonIcon
+        onPress={() => navigation.goBack()}
+        icon={SvgBack}
+        width={24}
+        height={24}
+      />
       <Text style={styles.textStyles}>{tile}</Text>
-      {!isCross && <ButtonText text={text} onPress={onSubmit} />}
+      {!isCross && (
+        <ButtonText text={text} onPress={onSubmit} disabled={isDisabled} />
+      )}
       {isCross && (
-        <ButtonIcon onPress={onPress}>
-          <SvgCross />
-        </ButtonIcon>
+        <ButtonIcon onPress={onPress} icon={SvgCross} width={24} height={24} />
       )}
     </View>
   );

@@ -17,6 +17,8 @@ const LIGHT_COLOR_THEME: ColorTheme = {
   primaryBtnText: "#FFFFFF",
   errorClr: "#C2534C",
   menu: "#dedede",
+  plus: "#618909",
+  plusIcon: "#f4f5f4",
 };
 
 export const LIGHT_THEME_ID = "default-light";

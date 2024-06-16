@@ -51,6 +51,9 @@ export const PostsList: FC<PostsListProps> = ({
               id: item.id,
               onDeleteClick,
               styles: styles.deleteStyles,
+              deleteText: styles.deleteText,
+              deleteBtn: styles.deleteBtn,
+              deleteInner: styles.deleteInner,
             })
           }
           isSwipeable={isSwipeable}

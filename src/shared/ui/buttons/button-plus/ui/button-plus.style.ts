@@ -8,7 +8,7 @@ type PickedButtonBaseProps = Pick<ButtonBaseProps, "style">;
 export const getStyles = ({ style }: PickedButtonBaseProps) => {
   const { styles } = useThemeObject(createStyles);
 
-  return { rootStyles: [style, styles.root] };
+  return { rootStyles: [styles.root, style] };
 };
 const createStyles = (theme: Theme) => {
   const styles = StyleSheet.create({

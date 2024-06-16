@@ -1,14 +1,14 @@
 import { useUserEditProfile, useUserMe } from "@entities/user/api";
 import { EditProfileRequest, GenderType } from "@shared/apollo";
-import { AppRoutes } from "@shared/navigation/app-routes";
-import { ProfileScreenProps } from "@shared/navigation/screen-props";
 import { ImageLink } from "@shared/utils";
 import { ImageModel } from "@shared/utils/model/types";
 import { useForm } from "react-hook-form";
 import { Alert } from "react-native";
+import { editProfileResolver } from "./user-edit-profile-resolver";
+import { Asset } from "react-native-image-picker";
 
 type useUserEditProfileFormProps = {
-  image: ImageModel;
+  image: Asset | ImageModel;
   selectedId?: string;
   date?: string;
   onGoBack?: () => void;
@@ -24,21 +24,27 @@ export const useUserEditProfileForm = ({
 
   const { data } = useUserMe();
 
+  const user = data?.userMe;
+
   const formMethods = useForm<EditProfileRequest>({
     defaultValues: {
-      email: data?.userMe.email,
-      firstName: data?.userMe.firstName,
-      middleName: data?.userMe.middleName,
-      lastName: data?.userMe.lastName,
-      phone: data?.userMe.phone,
-      country: data?.userMe.country,
+      email: user?.email,
+      firstName: user?.firstName,
+      middleName: user?.middleName,
+      lastName: user?.lastName,
+      phone: user?.phone,
+      country: user?.country,
     },
+    resolver: editProfileResolver,
+    mode: "onTouched",
   });
 
   const onSubmit = async (data: EditProfileRequest) => {
     let avatarUrl;
     if (image !== null) {
       const normalImage = image?.uri ? image?.uri : "";
+
+      console.log(normalImage);
 
       const responseLink = await ImageLink.getUploadLink(
         normalImage,
@@ -47,7 +53,7 @@ export const useUserEditProfileForm = ({
 
       const link = responseLink.data;
 
-      await ImageLink.uploadImage(link, image);
+      await ImageLink.uploadImage(link, image as ImageModel);
 
       avatarUrl = link.split("?")[0];
     } else {
@@ -84,5 +90,6 @@ export const useUserEditProfileForm = ({
     formMethods,
     loading,
     onSubmit: formMethods.handleSubmit(onSubmit),
+    isValid: formMethods.formState.isValid,
   };
 };

@@ -1,5 +1,6 @@
 import { ImageModel } from "@shared/utils/model/types";
 import {
+  Asset,
   ImageLibraryOptions,
   launchCamera,
   launchImageLibrary,
@@ -16,7 +17,7 @@ const OPTIONS = {
 };
 
 type UseImagePickerProps = {
-  setImage: React.Dispatch<React.SetStateAction<ImageModel> | null>;
+  setImage: React.Dispatch<React.SetStateAction<Asset | null | ImageModel>>;
   setImageUrl?: React.Dispatch<React.SetStateAction<string | undefined | null>>;
   onComplete?: () => void;
 };
@@ -33,14 +34,33 @@ export const useImagePicker = ({
       } else if (response.errorMessage) {
         console.log(response.errorMessage);
       } else {
-        setImage(response?.assets?.[0]);
-        setImageUrl?.(response?.assets?.[0].uri);
-        onComplete?.();
+        if (response.assets?.length) {
+          setImage(response.assets[0]);
+          setImageUrl?.(response?.assets?.[0].uri);
+          onComplete?.();
+        }
+      }
+    });
+  };
+
+  const openCamera = () => {
+    launchCamera(OPTIONS as ImageLibraryOptions, (response) => {
+      if (response.didCancel) {
+        console.log("User cancelled image picker");
+      } else if (response.errorMessage) {
+        console.log(response.errorMessage);
+      } else {
+        if (response?.assets) {
+          setImage(response?.assets?.[0]);
+          setImageUrl?.(response?.assets?.[0].uri);
+          onComplete?.();
+        }
       }
     });
   };
 
   return {
     openGallery,
+    openCamera,
   };
 };

@@ -4,13 +4,24 @@ import { InputBaseProps } from "./input-base";
 import { useThemeObject } from "@shared/themes";
 import { TYPOGRAPHY } from "@shared/constants";
 
-type PickedInputBaseProps = Pick<InputBaseProps, "style" | "error">;
-export const getStyles = ({ style, error }: PickedInputBaseProps) => {
+type PickedInputBaseProps = Pick<
+  InputBaseProps,
+  "style" | "error" | "isTextArea"
+>;
+export const getStyles = ({
+  style,
+  error,
+  isTextArea,
+}: PickedInputBaseProps) => {
   const { styles } = useThemeObject(createStyles);
 
   return {
     root: [styles.root, error && styles.errorRoot, style],
-    input: [styles.input, error && styles.errorInput],
+    input: [
+      styles.input,
+      error && styles.errorInput,
+      isTextArea && styles.textArea,
+    ],
     labelText: [styles.labelText, error && styles.errorLabel],
     errorText: styles.errorText,
   };
@@ -46,6 +57,12 @@ const createStyles = (theme: Theme) => {
     },
     errorRoot: {
       borderBottomColor: theme.color.errorClr,
+    },
+
+    textArea: {
+      marginTop: 10,
+      height: 100,
+      textAlignVertical: "top",
     },
   });
 

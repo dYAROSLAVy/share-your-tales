@@ -12,4 +12,5 @@ export const VALIDATION_ERRORS = {
   invalidCurrency: "Invalid currency",
   selectRatePeriod: "Select Rate Period",
   inputRate: "Input Rate",
+  phone: "Enter correct phone number",
 };

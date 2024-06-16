@@ -10,12 +10,14 @@ type ChoicePhotoModalProps = {
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   setImage?: React.Dispatch<React.SetStateAction<string | null | undefined>>;
   launchImageLibrary: () => void;
+  launchCamera: () => void;
 } & BaseModalProps;
 
 export const ChoicePhotoModal: FC<ChoicePhotoModalProps> = ({
   isDeleteButton,
   launchImageLibrary,
   setModalVisible,
+  launchCamera,
   setImage,
   ...props
 }) => {
@@ -25,12 +27,21 @@ export const ChoicePhotoModal: FC<ChoicePhotoModalProps> = ({
     launchImageLibrary();
   };
 
+  const onCameraClick = () => {
+    launchCamera();
+  };
+
   return (
     <BaseModal {...props}>
       <View>
-        <ButtonPrimary style={styles.top} text="Take a photo" isMedium />
         <ButtonPrimary
-          style={styles.middle}
+          style={styles.top}
+          text="Take a photo"
+          isMedium
+          onPress={() => onCameraClick()}
+        />
+        <ButtonPrimary
+          style={!isDeleteButton ? styles.bottom : styles.middle}
           text="Choose from the library"
           isMedium
           onPress={() => onGalleryClick()}

@@ -11,8 +11,8 @@ import {
 } from "@features/user";
 import { FC, useState } from "react";
 import { useUserMe } from "@entities/user";
-import { ImageModel } from "@shared/utils/model/types";
 import { ProfileScreenProps } from "@shared/navigation/screen-props";
+import { Asset } from "react-native-image-picker";
 
 export const ProfileScreen: FC<ProfileScreenProps> = ({ navigation }) => {
   const styles = useThemeObject(createStyles);
@@ -21,21 +21,19 @@ export const ProfileScreen: FC<ProfileScreenProps> = ({ navigation }) => {
 
   const { data } = useUserMe();
 
-  const [image, setImage] = useState<ImageModel | null>(null);
+  const [image, setImage] = useState<Asset | null>(null);
 
-  const [imageUrl, setImageUrl] = useState(
-    data?.userMe.avatarUrl !== null ? data?.userMe.avatarUrl : null
-  );
+  const [imageUrl, setImageUrl] = useState(data?.userMe.avatarUrl);
 
   const [date, setDate] = useState(
-    data?.userMe.birthDate !== null ? data?.userMe.birthDate : ""
+    data?.userMe.birthDate !== null ? data?.userMe.birthDate : null
   );
 
   const [selectedId, setSelectedId] = useState(
     data?.userMe.gender !== null ? data?.userMe.gender : ""
   );
 
-  const { openGallery } = useImagePicker({
+  const { openGallery, openCamera } = useImagePicker({
     setImage,
     setImageUrl,
     onComplete: () => setModalVisible(false),
@@ -48,6 +46,7 @@ export const ProfileScreen: FC<ProfileScreenProps> = ({ navigation }) => {
   const {
     onSubmit,
     formMethods: { control },
+    isValid,
   } = useUserEditProfileForm({ image, selectedId, date, onGoBack });
 
   return (
@@ -57,6 +56,7 @@ export const ProfileScreen: FC<ProfileScreenProps> = ({ navigation }) => {
         navigation={navigation}
         text="Done"
         onSubmit={onSubmit}
+        isDisabled={!isValid}
       />
       <ScrollView contentContainerStyle={styles.wrapper}>
         <UserProfileAvatar
@@ -77,6 +77,7 @@ export const ProfileScreen: FC<ProfileScreenProps> = ({ navigation }) => {
         launchImageLibrary={openGallery}
         isDeleteButton
         setImage={setImageUrl}
+        launchCamera={openCamera}
       />
     </SafeAreaView>
   );

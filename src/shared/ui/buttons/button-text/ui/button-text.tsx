@@ -5,6 +5,7 @@ import { getStyles } from "./button-text.styles";
 
 export const ButtonText: FC<ButtonBaseProps> = ({
   text,
+  disabled,
   onPress,
   onShowUnderlay,
   onHideUnderlay,
@@ -12,7 +13,7 @@ export const ButtonText: FC<ButtonBaseProps> = ({
 }) => {
   const [isPressed, setIsPressed] = useState(false);
 
-  const styles = getStyles(isPressed);
+  const styles = getStyles(isPressed, disabled);
 
   return (
     <ButtonBase
