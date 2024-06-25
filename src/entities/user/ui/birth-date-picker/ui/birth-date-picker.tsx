@@ -4,9 +4,9 @@ import DatePicker from "react-native-date-picker";
 import { FC, useState } from "react";
 
 type BirthDatePickerProps = {
-  initialDate: any;
+  initialDate: string;
   open: boolean;
-  setNewDate: any;
+  setNewDate: React.Dispatch<React.SetStateAction<string | undefined>>;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 

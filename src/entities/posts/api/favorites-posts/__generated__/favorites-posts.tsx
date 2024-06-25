@@ -3,7 +3,10 @@ import * as Types from "../../../../../shared/apollo/model/api-types";
 import { DocumentNode } from "graphql";
 import * as Apollo from "@apollo/client";
 const defaultOptions = {} as const;
-export type GetFavoritesPostsVariables = Types.Exact<{ [key: string]: never }>;
+export type GetFavoritesPostsVariables = Types.Exact<{
+  afterCursor?: Types.InputMaybe<Types.Scalars["String"]["input"]>;
+  limit?: Types.InputMaybe<Types.Scalars["Int"]["input"]>;
+}>;
 
 export type GetFavoritesPosts = {
   __typename: "Query";
@@ -54,6 +57,24 @@ export const GetFavoritesPostsDocument = {
       kind: "OperationDefinition",
       operation: "query",
       name: { kind: "Name", value: "GetFavoritesPosts" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "afterCursor" },
+          },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "limit" },
+          },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+      ],
       selectionSet: {
         kind: "SelectionSet",
         selections: [
@@ -64,7 +85,27 @@ export const GetFavoritesPostsDocument = {
               {
                 kind: "Argument",
                 name: { kind: "Name", value: "input" },
-                value: { kind: "ObjectValue", fields: [] },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "afterCursor" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "afterCursor" },
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "limit" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "limit" },
+                      },
+                    },
+                  ],
+                },
               },
             ],
             selectionSet: {
@@ -213,6 +254,8 @@ export const GetFavoritesPostsDocument = {
  * @example
  * const { data, loading, error } = useGetFavoritesPosts({
  *   variables: {
+ *      afterCursor: // value for 'afterCursor'
+ *      limit: // value for 'limit'
  *   },
  * });
  */

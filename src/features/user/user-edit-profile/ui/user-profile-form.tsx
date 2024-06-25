@@ -7,9 +7,10 @@ import { Control } from "react-hook-form";
 import { FC, useMemo, useState } from "react";
 import RadioGroup, { RadioButtonProps } from "react-native-radio-buttons-group";
 import { EditProfileRequest } from "@shared/apollo";
+import { string } from "zod";
 
 type UserProfileFormProps = {
-  control: Control<EditProfileRequest, any>;
+  control: Control<EditProfileRequest>;
   selectedId: string | undefined;
   date?: string | null;
   setDate: React.Dispatch<React.SetStateAction<string | undefined>>;
@@ -103,7 +104,7 @@ export const UserProfileForm: FC<UserProfileFormProps> = ({
             onPressIn={() => setOpen(true)}
           />
           <BirthDatePicker
-            initialDate={date}
+            initialDate={date !== null && date ? date : '0'}
             setNewDate={setDate}
             open={open}
             setOpen={setOpen}

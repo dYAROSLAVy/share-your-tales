@@ -43,9 +43,7 @@ export const useUserEditProfileForm = ({
     let avatarUrl;
     if (image !== null) {
       const normalImage = image?.uri ? image?.uri : "";
-
-      console.log(normalImage);
-
+      
       const responseLink = await ImageLink.getUploadLink(
         normalImage,
         "AVATARS"

@@ -3,19 +3,30 @@ import { useThemeObject } from "@shared/themes";
 import React, { FC } from "react";
 import { createStyles } from "./posts-list.style";
 import { PostModel } from "@shared/apollo";
-import { Post, PostDeleteArea } from "@entities/posts";
+import {
+  GetFavoritesPosts,
+  GetMyPosts,
+  GetPosts,
+  Post,
+  PostDeleteArea,
+} from "@entities/posts";
 import {
   usePostDeleteSwipe,
   usePostLikePress,
   usePostUnlikePress,
 } from "@features/post";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { ParamListBase } from "@react-navigation/native";
+import { ApolloQueryResult } from "@apollo/client";
 
 type PostsListProps = {
   posts?: PostModel[] | null;
   isSwipeable?: boolean;
   empty?: React.JSX.Element;
-  navigation?: any;
-  onEndReached: any;
+  navigation?: NativeStackNavigationProp<ParamListBase, string>;
+  onEndReached?: () =>
+    | Promise<ApolloQueryResult<GetMyPosts | GetPosts | GetFavoritesPosts>>
+    | undefined;
 };
 
 export const PostsList: FC<PostsListProps> = ({

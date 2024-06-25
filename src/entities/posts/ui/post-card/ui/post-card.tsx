@@ -6,7 +6,7 @@ import {
   TouchableHighlight,
   View,
 } from "react-native";
-import { useTheme, useThemeObject } from "@shared/themes";
+import { useTheme } from "@shared/themes";
 import { FC } from "react";
 import { SvgHeart } from "@shared/assets/icons/components/heart";
 import { formatDate } from "@shared/utils";
@@ -17,6 +17,8 @@ import { SvgShare } from "@shared/assets/icons/components/share";
 import { Avatar } from "@shared/ui/avatar";
 import { getStyles } from "./post-card.styles";
 import { linking } from "@shared/navigation/linking";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { ParamListBase } from "@react-navigation/native";
 
 export type PostProps = {
   isSwipeable?: boolean;
@@ -24,7 +26,7 @@ export type PostProps = {
   PostDeleteArea?: any;
   postLike: () => void;
   postUnlike: () => void;
-  navigation?: any;
+  navigation?: NativeStackNavigationProp<ParamListBase, string>;
 } & Pick<
   PostModel,
   | "title"
@@ -69,14 +71,11 @@ export const Post: FC<PostProps> = ({
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
-          // shared with activity type of result.activityType
         } else {
-          // shared
         }
       } else if (result.action === Share.dismissedAction) {
-        // dismissed
       }
-    } catch (error: any) {
+    } catch (error) {
       Alert.alert(error.message);
     }
   };
@@ -101,11 +100,7 @@ export const Post: FC<PostProps> = ({
             {!isBig && <Text style={styles.titleStyles}>{title}</Text>}
             <Text style={styles.date}>{normalDate}</Text>
           </View>
-          <Image
-            source={{ uri: mediaUrl }}
-            style={styles.imageStyles}
-            // onError={({ nativeEvent: {error} }) => console.log(error)}
-          />
+          <Image style={styles.imageStyles} source={{ uri: mediaUrl }} />
           {isBig && <Text style={styles.textStyles}>{description}</Text>}
           <View style={styles.bottomInner}>
             <View style={styles.authorWrap}>
