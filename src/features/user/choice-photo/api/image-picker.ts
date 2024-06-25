@@ -30,7 +30,6 @@ export const useImagePicker = ({
   const openGallery = () => {
     launchImageLibrary(OPTIONS as ImageLibraryOptions, (response) => {
       if (response.didCancel) {
-        console.log("User cancelled image picker");
       } else if (response.errorMessage) {
         console.log(response.errorMessage);
       } else {
@@ -46,7 +45,6 @@ export const useImagePicker = ({
   const openCamera = () => {
     launchCamera(OPTIONS as ImageLibraryOptions, (response) => {
       if (response.didCancel) {
-        console.log("User cancelled image picker");
       } else if (response.errorMessage) {
         console.log(response.errorMessage);
       } else {

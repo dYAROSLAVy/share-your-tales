@@ -22,6 +22,7 @@ const createStyles = (theme: Theme) => {
       alignItems: "center",
       paddingVertical: 20,
       paddingHorizontal: 16,
+      height: 108,
     },
     textStyles: {
       ...TYPOGRAPHY.headline1Semibold18,

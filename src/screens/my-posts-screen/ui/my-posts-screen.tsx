@@ -8,7 +8,36 @@ import { MainScreenProps } from "@shared/navigation/screen-props";
 import { AppRoutes } from "@shared/navigation/app-routes";
 
 export const MyPostsScreen: FC<MainScreenProps> = ({ navigation }) => {
-  const { loading, error, data } = useGetMyPosts();
+  const { data, fetchMore } = useGetMyPosts({
+    variables: { limit: 10, afterCursor: null },
+  });
+
+  const handleOnEndReached = () => {
+    if (data?.myPosts.pageInfo?.count && data?.myPosts.pageInfo?.count === 10) {
+      if (data?.myPosts.pageInfo)
+        return fetchMore({
+          variables: {
+            afterCursor: data.myPosts.pageInfo.afterCursor,
+            limit: 10,
+          },
+          updateQuery: (previousResult, { fetchMoreResult }) => {
+            const newPosts = fetchMoreResult.myPosts.data;
+
+            const pageInfo = fetchMoreResult.myPosts.pageInfo;
+            return newPosts?.length
+              ? {
+                  __typename: "Query",
+                  myPosts: {
+                    __typename: previousResult.myPosts.__typename,
+                    data: [...(previousResult.myPosts.data ?? []), ...newPosts],
+                    pageInfo,
+                  },
+                }
+              : previousResult;
+          },
+        });
+    }
+  };
 
   return (
     <PostsLayout>
@@ -17,6 +46,8 @@ export const MyPostsScreen: FC<MainScreenProps> = ({ navigation }) => {
       </View>
       <PostsList
         isSwipeable
+        navigation={navigation}
+        onEndReached={handleOnEndReached}
         posts={data?.myPosts.data}
         empty={<PostStatus text="You haven't posted any posts yet" />}
       />

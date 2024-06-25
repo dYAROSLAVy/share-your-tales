@@ -1,5 +1,5 @@
-import { usePostCreate } from "@entities/posts";
-import { CreatePostRequest } from "@shared/apollo";
+import { useGetMyPosts, useGetPosts, usePostCreate } from "@entities/posts";
+import { CreatePostRequest, PostFilterType } from "@shared/apollo";
 import { ImageLink } from "@shared/utils";
 import { ImageModel } from "@shared/utils/model/types";
 import { useForm } from "react-hook-form";
@@ -15,6 +15,12 @@ type CreatePostFormProps = {
 
 export const useCreatePostForm = ({ image, onGoBack }: CreatePostFormProps) => {
   const [postCreate] = usePostCreate();
+  const { refetch } = useGetMyPosts({
+    variables: { limit: 10, afterCursor: null },
+  });
+  const { refetch: postRefetch } = useGetPosts({
+    variables: { type: PostFilterType.New, limit: 10, afterCursor: null },
+  });
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -45,6 +51,8 @@ export const useCreatePostForm = ({ image, onGoBack }: CreatePostFormProps) => {
       const response = await postCreate({
         variables: { description, mediaUrl, title },
       });
+      refetch();
+      postRefetch();
       onGoBack?.();
     } catch (error) {
       Alert.alert(error.message);

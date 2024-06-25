@@ -16,7 +16,7 @@ import { SvgMoon } from "@shared/assets/icons/components/moon";
 export const SideMenu = ({ navigation }) => {
   const styles = useThemeObject(createStyles);
 
-  const { toggleTheme, theme } = useTheme();
+  const { toggleTheme } = useTheme();
 
   const { logout } = useAuthorization();
 

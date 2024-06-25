@@ -4,19 +4,18 @@ import { ButtonIcon, ButtonText } from "@shared/ui/buttons";
 import { Text, View } from "react-native";
 import { FC } from "react";
 import { getStyles } from "./navigation-header.styles";
-import { useTheme } from "@shared/themes";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { ParamListBase } from "@react-navigation/native";
 
 export type NavigationHeaderProps = {
   tile?: string;
   isFullPost?: boolean;
   isCross?: boolean;
   isDisabled?: boolean;
-  navigation: any;
+  navigation: NativeStackNavigationProp<ParamListBase, string>;
   text?: string;
   onPress?: () => void;
-  onSubmit?: (
-    e?: React.BaseSyntheticEvent<object, any, any> | undefined
-  ) => Promise<void>;
+  onSubmit?: (e?: React.BaseSyntheticEvent) => Promise<void>;
 };
 
 export const NavigationHeader: FC<NavigationHeaderProps> = ({
@@ -30,7 +29,6 @@ export const NavigationHeader: FC<NavigationHeaderProps> = ({
   onPress,
 }) => {
   const styles = getStyles({ isFullPost });
-  const { theme } = useTheme();
   return (
     <View style={styles.wrapper}>
       <ButtonIcon

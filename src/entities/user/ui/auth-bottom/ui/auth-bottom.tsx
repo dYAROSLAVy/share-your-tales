@@ -6,9 +6,7 @@ import { Subtitle, SubtitleProps } from "@shared/ui/subtitle";
 import { ButtonPrimary, ButtonText } from "@shared/ui/buttons";
 
 type AuthBottomProps = {
-  onSubmit: (
-    e?: React.BaseSyntheticEvent<object, any, any> | undefined
-  ) => Promise<void>;
+  onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
   textButton: string;
   onTextBtnPress: () => void;
   loading: boolean;

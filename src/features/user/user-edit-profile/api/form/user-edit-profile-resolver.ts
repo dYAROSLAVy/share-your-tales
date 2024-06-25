@@ -9,7 +9,16 @@ const editProfileSchema = z.object({
     .trim()
     .min(1, VALIDATION_ERRORS.required)
     .email(VALIDATION_ERRORS.invalidEmail),
-  phone: z.string().trim().regex(REGEXP.phone, VALIDATION_ERRORS.phone),
+  phone: z
+    .literal(null)
+    .or(
+      z.string().trim().regex(REGEXP.phone, VALIDATION_ERRORS.phone).optional()
+    ),
+
+  firstName: z.string().optional(),
+  middleName: z.string().optional(),
+  lastName: z.string().optional(),
+  country: z.string().optional(),
 });
 
 export type EditProfileFields = z.infer<typeof editProfileSchema>;
