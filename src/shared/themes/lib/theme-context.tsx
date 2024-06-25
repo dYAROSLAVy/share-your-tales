@@ -18,9 +18,7 @@ type ProvidedValue = {
 
 const Context = createContext<ProvidedValue>({
   theme: LIGHT_THEME,
-  toggleTheme: () => {
-    console.log("ThemeProvider is not rendered!");
-  },
+  toggleTheme: () => {},
 });
 
 type ThemeProviderProps = {

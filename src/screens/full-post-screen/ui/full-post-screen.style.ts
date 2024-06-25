@@ -6,7 +6,6 @@ export const createStyles = (theme: Theme) => {
     root: {
       flex: 1,
       gap: 8,
-      padding: 16,
       backgroundColor: theme.color.lightest,
     },
   });

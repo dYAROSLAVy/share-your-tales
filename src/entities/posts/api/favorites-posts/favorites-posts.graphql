@@ -1,5 +1,5 @@
-query GetFavoritesPosts {
-  favouritePosts(input: {}) {
+query GetFavoritesPosts($afterCursor: String, $limit: Int) {
+  favouritePosts(input: { afterCursor: $afterCursor, limit: $limit }) {
     data {
       author {
         avatarUrl
